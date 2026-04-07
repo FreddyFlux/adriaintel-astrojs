@@ -1,0 +1,96 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { ContactForm } from '@/components/site/ContactForm';
+---
+
+<Layout
+	title="Contact | AdriaIntel"
+	description="Connect with Mediterranean experts for coastal market intelligence and artisanal maritime data."
+>
+	<main class="mx-auto max-w-7xl px-6 pb-20 pt-32">
+		<header class="mb-20">
+			<div class="max-w-3xl">
+				<span class="font-label mb-4 block text-xs uppercase tracking-widest text-tertiary"
+					>Get in Touch</span
+				>
+				<h1
+					class="mb-6 text-5xl font-extrabold leading-tight tracking-tight text-primary md:text-7xl"
+				>
+					Connect with our <br />Mediterranean experts.
+				</h1>
+				<p class="max-w-2xl text-lg leading-relaxed text-secondary md:text-xl">
+					Whether you are seeking coastal market intelligence or artisanal maritime data, AdriaIntel
+					provides the precision your vision demands.
+				</p>
+			</div>
+		</header>
+
+		<div class="grid grid-cols-1 items-start gap-8 lg:grid-cols-12">
+			<div
+				class="relative overflow-hidden rounded-xl bg-surface-container-lowest p-8 editorial-shadow md:col-span-7 md:p-12"
+			>
+				<div class="absolute right-0 top-0 h-32 w-32 rounded-bl-3xl bg-primary-container opacity-5"></div>
+				<ContactForm variant="light" client:visible />
+			</div>
+
+			<div class="space-y-8 lg:col-span-5">
+				<div class="relative aspect-[4/3] overflow-hidden rounded-xl editorial-shadow">
+					<img
+						class="h-full w-full object-cover grayscale-[0.2] transition-transform duration-700 group-hover:scale-105"
+						src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4pCRkruDQobovLE_U-l84DjYjot-EwM2yI5rn0DVKqrK5oFCeDvNtPBKLUHmgWK5jY_-shWMl_O8ix6KEJYcHlZC9oX4bmVLVWsF78mGOgBTeSWSVIkVm0vHYNW5ALopIbepSLCbCXRH8pvGHwN48DzO2_ggWQFkOT1dxgzGdtTBVHWeeVQEE-8RgLoF9Go4DhBeHc8qvgS969THIt9rEXMwricBFcUqbgJ1eUrYQcFD-Y2Y4sPz-KEYSPtgsXyma-wK7DEDmAOX8"
+						alt="Mediterranean coastline"
+						width={800}
+						height={600}
+						loading="lazy"
+					/>
+					<div class="absolute inset-0 bg-primary/10 mix-blend-multiply"></div>
+					<div
+						class="glass-nav absolute bottom-6 left-6 right-6 flex items-center justify-between rounded-xl p-6"
+					>
+						<div>
+							<p class="font-headline font-bold text-primary">Split, Croatia</p>
+							<p class="font-label text-[10px] uppercase tracking-widest text-secondary">Coastal HQ</p>
+						</div>
+						<div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-on-primary">
+							<span class="material-symbols-outlined text-sm">explore</span>
+						</div>
+					</div>
+					<div
+						class="absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 animate-pulse rounded-full bg-tertiary ring-8 ring-tertiary/20"
+					>
+					</div>
+				</div>
+
+				<div class="space-y-8 rounded-xl bg-surface-container-low p-10">
+					<div class="flex items-start gap-4">
+						<div class="rounded-lg bg-primary-container/20 p-3 text-primary">
+							<span class="material-symbols-outlined">mail</span>
+						</div>
+						<div>
+							<h4 class="font-headline text-lg font-bold text-primary">Electronic Mail</h4>
+							<p class="text-secondary">concierge@adriaintel.com</p>
+						</div>
+					</div>
+					<div class="flex items-start gap-4">
+						<div class="rounded-lg bg-primary-container/20 p-3 text-primary">
+							<span class="material-symbols-outlined">public</span>
+						</div>
+						<div>
+							<h4 class="font-headline text-lg font-bold text-primary">Regional Presence</h4>
+							<p class="text-secondary">London | Athens | Split | Monaco</p>
+						</div>
+					</div>
+					<div class="flex items-start gap-4">
+						<div class="rounded-lg bg-primary-container/20 p-3 text-primary">
+							<span class="material-symbols-outlined">schedule</span>
+						</div>
+						<div>
+							<h4 class="font-headline text-lg font-bold text-primary">Hours of Service</h4>
+							<p class="text-secondary">08:00 — 18:00 CET, Monday to Friday</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+</Layout>

@@ -2,12 +2,66 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/inter";
+@import "@fontsource-variable/manrope";
 
 @custom-variant dark (&:is(.dark *));
 
+/* Adriatic Teal semantic palette (see design-folder/stitch_adriaintel/adriatic_azure/DESIGN.md) */
 @theme inline {
-    --font-heading: var(--font-sans);
-    --font-sans: 'Inter Variable', sans-serif;
+    --font-headline: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+    --font-heading: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+    --font-body: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+    --font-label: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+    --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+
+    --color-on-primary-fixed-variant: #1a4f41;
+    --color-on-error: #ffffff;
+    --color-error-container: #ffdad6;
+    --color-surface-bright: #e6fff4;
+    --color-on-secondary-fixed-variant: #44483b;
+    --color-surface-container-lowest: #ffffff;
+    --color-outline-variant: #c0c9c3;
+    --color-on-secondary: #ffffff;
+    --color-surface: #e6fff4;
+    --color-inverse-primary: #9cd2be;
+    --color-surface-tint: #346858;
+    --color-primary-container: #265a4b;
+    --color-on-secondary-container: #606456;
+    --color-on-surface-variant: #404945;
+    --color-outline: #707975;
+    --color-tertiary-fixed-dim: #e9c349;
+    --color-secondary-fixed: #e0e4d2;
+    --color-primary-fixed-dim: #9cd2be;
+    --color-error: #ba1a1a;
+    --color-primary-fixed: #b7eeda;
+    --color-on-tertiary: #ffffff;
+    --color-inverse-surface: #00382b;
+    --color-background: #e6fff4;
+    --color-inverse-on-surface: #c5fce8;
+    --color-on-tertiary-fixed-variant: #574500;
+    --color-on-background: #002018;
+    --color-secondary: #5c6051;
+    --color-on-secondary-fixed: #191d12;
+    --color-tertiary-fixed: #ffe088;
+    --color-on-tertiary-container: #4f3e00;
+    --color-on-primary-container: #9acfbc;
+    --color-on-surface: #002018;
+    --color-on-primary-fixed: #002018;
+    --color-surface-container: #c3f9e5;
+    --color-surface-dim: #afe5d2;
+    --color-surface-container-low: #caffeb;
+    --color-on-tertiary-fixed: #241a00;
+    --color-surface-container-high: #bdf4e0;
+    --color-on-error-container: #93000a;
+    --color-secondary-fixed-dim: #c4c8b6;
+    --color-on-primary: #ffffff;
+    --color-surface-container-highest: #b7eeda;
+    --color-tertiary-container: #cca830;
+    --color-surface-variant: #b7eeda;
+    --color-tertiary: #735c00;
+    --color-secondary-container: #dee2cf;
+    --color-primary: #084235;
+
     --color-sidebar-ring: var(--sidebar-ring);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -30,9 +84,7 @@
     --color-muted-foreground: var(--muted-foreground);
     --color-muted: var(--muted);
     --color-secondary-foreground: var(--secondary-foreground);
-    --color-secondary: var(--secondary);
     --color-primary-foreground: var(--primary-foreground);
-    --color-primary: var(--primary);
     --color-popover-foreground: var(--popover-foreground);
     --color-popover: var(--popover);
     --color-card-foreground: var(--card-foreground);
@@ -49,82 +101,101 @@
 }
 
 :root {
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.97 0 0);
-    --secondary-foreground: oklch(0.205 0 0);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
-    --destructive: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.708 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
-    --radius: 0.625rem;
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.205 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.97 0 0);
-    --sidebar-accent-foreground: oklch(0.205 0 0);
-    --sidebar-border: oklch(0.922 0 0);
-    --sidebar-ring: oklch(0.708 0 0);
+    --background: #fcfefb;
+    --foreground: #002018;
+    --card: #ffffff;
+    --card-foreground: #002018;
+    --popover: #ffffff;
+    --popover-foreground: #002018;
+    --primary: #084235;
+    --primary-foreground: #ffffff;
+    --secondary: #5c6051;
+    --secondary-foreground: #ffffff;
+    --muted: #c3f9e5;
+    --muted-foreground: #404945;
+    --accent: #caffeb;
+    --accent-foreground: #002018;
+    --destructive: #ba1a1a;
+    --border: #c0c9c3;
+    --input: #c0c9c3;
+    --ring: #735c00;
+    --chart-1: #084235;
+    --chart-2: #5c6051;
+    --chart-3: #346858;
+    --chart-4: #735c00;
+    --chart-5: #b7eeda;
+    --radius: 0.75rem;
+    --sidebar: #e6fff4;
+    --sidebar-foreground: #002018;
+    --sidebar-primary: #084235;
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: #caffeb;
+    --sidebar-accent-foreground: #002018;
+    --sidebar-border: #c0c9c3;
+    --sidebar-ring: #735c00;
 }
 
 .dark {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.205 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.205 0 0);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.922 0 0);
-    --primary-foreground: oklch(0.205 0 0);
-    --secondary: oklch(0.269 0 0);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
-    --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.704 0.191 22.216);
-    --border: oklch(1 0 0 / 10%);
+    --background: #00150f;
+    --foreground: #e6fff4;
+    --card: #002018;
+    --card-foreground: #e6fff4;
+    --popover: #002018;
+    --popover-foreground: #e6fff4;
+    --primary: #b7eeda;
+    --primary-foreground: #002018;
+    --secondary: #5c6051;
+    --secondary-foreground: #fcfefb;
+    --muted: #265a4b;
+    --muted-foreground: #c0c9c3;
+    --accent: #265a4b;
+    --accent-foreground: #e6fff4;
+    --destructive: #ffdad6;
+    --border: oklch(1 0 0 / 12%);
     --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.556 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
-    --sidebar: oklch(0.205 0 0);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.488 0.243 264.376);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.269 0 0);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
+    --ring: #9cd2be;
+    --sidebar: #002018;
+    --sidebar-foreground: #e6fff4;
+    --sidebar-primary: #b7eeda;
+    --sidebar-primary-foreground: #002018;
+    --sidebar-accent: #265a4b;
+    --sidebar-accent-foreground: #e6fff4;
     --sidebar-border: oklch(1 0 0 / 10%);
-    --sidebar-ring: oklch(0.556 0 0);
+    --sidebar-ring: #9cd2be;
+}
+
+@layer utilities {
+    .editorial-shadow {
+        box-shadow: 0 30px 50px -12px rgba(0, 32, 24, 0.06);
+    }
+    .glass-nav {
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+    }
+    .text-mask-ocean {
+        background-image: url("https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=1600&h=600&fit=crop&q=80");
+        background-size: cover;
+        background-position: center;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
+    * {
+        @apply border-border outline-ring/50;
     }
-  body {
-    @apply bg-background text-foreground;
+    body {
+        @apply bg-background text-foreground font-sans antialiased;
     }
-  html {
-    @apply font-sans;
+    html {
+        @apply font-sans;
+    }
+    h1,
+    h2,
+    h3,
+    h4 {
+        font-family: var(--font-headline), var(--font-heading), ui-sans-serif, system-ui, sans-serif;
     }
 }

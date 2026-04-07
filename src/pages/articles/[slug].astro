@@ -1,0 +1,92 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('articles');
+	return posts.map((post) => ({
+		params: { slug: post.id },
+		props: { post },
+	}));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const siteUrl = Astro.site?.href?.replace(/\/$/, '') ?? '';
+const pageUrl = siteUrl ? `${siteUrl}/articles/${post.id}` : Astro.url.href;
+const ogImage = post.data.heroImage;
+
+const jsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'Article',
+	headline: post.data.title,
+	description: post.data.description,
+	datePublished: post.data.pubDate.toISOString(),
+	...(post.data.updatedDate && { dateModified: post.data.updatedDate.toISOString() }),
+	author: {
+		'@type': 'Organization',
+		name: 'AdriaIntel',
+	},
+	publisher: {
+		'@type': 'Organization',
+		name: 'AdriaIntel',
+	},
+	mainEntityOfPage: {
+		'@type': 'WebPage',
+		'@id': pageUrl,
+	},
+	...(ogImage && { image: ogImage }),
+};
+---
+
+<Layout
+	title={`${post.data.title} | AdriaIntel`}
+	description={post.data.description}
+	pathname={`/articles/${post.id}`}
+	ogType="article"
+	ogImage={ogImage}
+	jsonLd={jsonLd}
+>
+	<main class="mx-auto max-w-3xl px-6 pb-24 pt-32">
+		<article>
+			<p class="font-label mb-4 text-xs uppercase tracking-widest text-tertiary">
+				{post.data.category ?? 'Maritime Intelligence'}
+			</p>
+			<h1 class="font-headline mb-6 text-4xl font-bold tracking-tight text-primary md:text-5xl">
+				{post.data.title}
+			</h1>
+			<p class="mb-10 text-secondary">{post.data.description}</p>
+			<div class="mb-12 flex flex-wrap gap-4 text-sm text-secondary">
+				<time datetime={post.data.pubDate.toISOString()}>
+					{post.data.pubDate.toLocaleDateString('en-US', {
+						year: 'numeric',
+						month: 'long',
+						day: 'numeric',
+					})}
+				</time>
+				{post.data.readTime ? <span>{post.data.readTime} read</span> : null}
+			</div>
+			{
+				post.data.heroImage ? (
+					<img
+						class="mb-12 w-full rounded-xl object-cover editorial-shadow"
+						src={post.data.heroImage}
+						alt=""
+						width={1200}
+						height={630}
+						loading="eager"
+					/>
+				) : null
+			}
+			<div
+				class="prose-adria space-y-6 text-lg leading-relaxed text-on-surface [&_h2]:mt-12 [&_h2]:font-headline [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-primary [&_p]:text-secondary"
+			>
+				<Content />
+			</div>
+		</article>
+		<p class="mt-16">
+			<a class="font-headline font-bold text-primary" href="/articles">← Back to articles</a>
+		</p>
+	</main>
+</Layout>

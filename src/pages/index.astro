@@ -1,17 +1,225 @@
 ---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import { ContactForm } from '@/components/site/ContactForm';
 
+const siteUrl = Astro.site?.href?.replace(/\/$/, '') ?? '';
+const jsonLd = {
+	'@context': 'https://schema.org',
+	'@graph': [
+		{
+			'@type': 'Organization',
+			name: 'AdriaIntel',
+			url: siteUrl || undefined,
+			description: 'Maritime intelligence and boutique data consulting for the global seafood industry.',
+		},
+		{
+			'@type': 'WebSite',
+			name: 'AdriaIntel',
+			url: siteUrl || undefined,
+		},
+	],
+};
+
+const allArticles = (await getCollection('articles')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+const teasers = allArticles.slice(0, 3);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout
+	title="AdriaIntel | Coastal Precision, Global Expertise"
+	description="Navigating the complexities of the global seafood industry with artisanal data intelligence and Mediterranean market wisdom."
+	jsonLd={jsonLd}
+>
+	<main>
+		<section class="relative flex min-h-screen items-center overflow-hidden pt-24">
+			<div class="absolute inset-0 z-0">
+				<div class="h-full w-full bg-gradient-to-br from-surface to-surface-container-low opacity-50"></div>
+				<div
+					class="pointer-events-none absolute bottom-0 right-0 h-full w-1/2 bg-[url('https://www.transparenttextures.com/patterns/wave-cut.png')] opacity-10"
+				>
+				</div>
+			</div>
+			<div class="container relative z-10 mx-auto px-8">
+				<div class="max-w-5xl">
+					<span
+						class="font-label mb-6 inline-block rounded-full bg-tertiary-fixed/30 px-3 py-1 text-xs uppercase tracking-[0.2em] text-tertiary"
+						>Coastal Precision • Global Expertise</span
+					>
+					<h1
+						class="font-headline mb-8 text-7xl leading-[0.9] font-extrabold tracking-tighter text-mask-ocean md:text-9xl"
+					>
+						AdriaIntel
+					</h1>
+					<p
+						class="font-body mb-12 max-w-2xl text-xl leading-relaxed text-secondary md:text-2xl"
+					>
+						Navigating the complexities of the global seafood industry with artisanal data intelligence
+						and Mediterranean market wisdom.
+					</p>
+					<div class="flex flex-col gap-6 sm:flex-row">
+						<a
+							href="/contact"
+							class="flex items-center justify-center gap-3 rounded-xl bg-primary px-10 py-5 font-headline text-lg font-bold text-on-primary transition-transform hover:scale-105"
+						>
+							Start Consulting
+							<span class="material-symbols-outlined">trending_up</span>
+						</a>
+						<a
+							href="/articles"
+							class="rounded-xl bg-surface-container-highest px-10 py-5 font-headline text-lg font-bold text-primary transition-colors hover:bg-surface-container-high"
+						>
+							Explore Insights
+						</a>
+					</div>
+				</div>
+			</div>
+			<div
+				class="absolute right-0 top-1/2 hidden h-3/4 w-1/3 -translate-y-1/2 overflow-hidden rounded-l-[100px] editorial-shadow xl:block"
+			>
+				<img
+					class="h-full w-full object-cover"
+					src="https://lh3.googleusercontent.com/aida-public/AB6AXuAR1Tq0_vg4OEVPJqKRR-8RuoiISvCT4ZRIdko3JfwDMqKbEop6SsguayJy6UTVlT9FC-_dpJ-KIuirOMtaveKW5THyiZk27TH4aganWQ1nAvi5vnL495gy6m-l40DbrZTuXh1O158b1l6Zml0IWGHd6twIVdTt6B-0oI49FsQWTJ63vA2gYIHoKAFkFuR2JQ6Cs6G2L1VCMiFApDny7D5vlsChRnSa0bbnrzrz6KDMQVGTnih7eGY4k66J_pgPiAF60ZWHGyjiGvTv"
+					alt=""
+					width={800}
+					height={1000}
+					loading="eager"
+					fetchpriority="high"
+				/>
+			</div>
+		</section>
+
+		<section class="relative bg-surface-container-low py-32">
+			<div class="container mx-auto px-8">
+				<div class="grid grid-cols-1 items-center gap-24 md:grid-cols-2">
+					<div class="relative">
+						<div
+							class="absolute -left-12 -top-12 z-0 scale-95 rotate-3 rounded-xl bg-surface-container-lowest p-4 editorial-shadow"
+						>
+							<img
+								class="h-64 w-64 rounded-lg object-cover"
+								src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoGXQKcWsWqyXSJdos1_RJ44Yp5H-Myvq2Kjy0z268wF-GbmMy8jnHIQ0ArzBoGni6AQ3Y5D52pNRoWKVF1fenGWkfEpWPwrULrG2_YWX_LQmM2zSj7-U8Clcl5yCmeHtRELa5mJFHfBf7MHcjPi3rRST3pwFXw2qd223H7xDI3Okel_D9gCmMH_1Jh5AwyrPen3Bm2Hi2f72McrEkV7jYna_VnnXJjItMvwFn6MW5h0Tn0Bqsm-0D_5H3sJVTRrFT2AuiyeUxGD8s"
+								alt=""
+								width={256}
+								height={256}
+								loading="lazy"
+							/>
+						</div>
+						<div class="relative z-10 overflow-hidden rounded-xl editorial-shadow">
+							<img
+								class="aspect-[4/5] w-full object-cover"
+								src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2Oj9zeSbjptTqy6tabL576I72cCKODdfC8rl6KBbxxHkG9JaGvpp_2MPeeOwIwTLsr9v0mkqb6No00NJAsLLmuBzaSlLEnYFjd9WG8EI-PLEDUdG_dh7IG6TJctXY1uI2rkeLBKvkRxbQohxl3PBCHt1oFex28jSTFo7513JClEIfbuBA5pwjRjSWQt01U-tJeXZOr4QKmueQGZS_9hYOsVBVIy8kwFbSCmEEHNtLdpr5lBbcu64xpGULziJ9RpDFzQZEkFcKcgZ8"
+								alt=""
+								width={640}
+								height={800}
+								loading="lazy"
+							/>
+						</div>
+					</div>
+					<div class="space-y-8">
+						<h2 class="font-headline text-4xl font-bold tracking-tight text-primary md:text-5xl">
+							The Boutique <br /><span class="font-light italic text-secondary">Approach to Data</span>
+						</h2>
+						<p class="font-body text-lg leading-relaxed text-on-surface-variant">
+							Based in the heart of the Adriatic, AdriaIntel bridges the gap between raw maritime data
+							and actionable executive strategy. We don't just provide reports; we curate intelligence.
+						</p>
+						<div class="grid grid-cols-2 gap-8 pt-8">
+							<div>
+								<h4 class="font-headline text-3xl font-bold text-tertiary">120+</h4>
+								<p class="font-label text-sm uppercase tracking-widest text-secondary">
+									Global Partners
+								</p>
+							</div>
+							<div>
+								<h4 class="font-headline text-3xl font-bold text-tertiary">15yr</h4>
+								<p class="font-label text-sm uppercase tracking-widest text-secondary">
+									Maritime Expertise
+								</p>
+							</div>
+						</div>
+						<a
+							class="group inline-flex items-center gap-2 font-headline font-bold text-primary"
+							href="/about"
+						>
+							Learn about our methodology
+							<span class="material-symbols-outlined transition-transform group-hover:translate-x-2"
+								>arrow_forward</span
+							>
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="overflow-hidden bg-surface py-32">
+			<div class="container mx-auto px-8">
+				<div class="mb-16 flex items-end justify-between">
+					<div>
+						<span class="font-label text-xs uppercase tracking-[0.2em] text-tertiary">The Registry</span>
+						<h2 class="font-headline mt-2 text-4xl font-bold text-primary md:text-5xl">
+							Maritime Insights
+						</h2>
+					</div>
+					<a
+						class="font-label border-b border-outline-variant pb-1 text-xs uppercase tracking-widest text-secondary transition-colors hover:text-primary"
+						href="/articles">View Archives</a
+					>
+				</div>
+				<div class="grid grid-cols-1 gap-12 md:grid-cols-3">
+					{
+						teasers.map((post) => (
+							<a href={`/articles/${post.id}`} class="group cursor-pointer">
+								<div class="relative mb-6 aspect-[16/10] overflow-hidden rounded-xl bg-surface-container-high">
+									{post.data.heroImage ? (
+										<img
+											class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+											src={post.data.heroImage}
+											alt=""
+											width={640}
+											height={400}
+											loading="lazy"
+										/>
+									) : null}
+									<div class="glass-nav absolute left-4 top-4 rounded-full bg-surface/90 px-3 py-1 text-[10px] font-bold uppercase tracking-tighter font-label">
+										{post.data.category ?? 'Insight'}
+									</div>
+								</div>
+								<h3 class="font-headline mb-3 text-xl font-bold text-primary transition-colors group-hover:text-tertiary">
+									{post.data.title}
+								</h3>
+								<p class="line-clamp-2 text-sm leading-relaxed text-on-surface-variant">
+									{post.data.description}
+								</p>
+							</a>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section class="relative overflow-hidden bg-primary py-32 text-surface">
+			<div class="pointer-events-none absolute right-0 top-0 h-full w-full opacity-5">
+				<svg class="h-full w-full" preserveAspectRatio="none" viewBox="0 0 100 100">
+					<path d="M0 50 Q 25 30 50 50 T 100 50" fill="none" stroke="white" stroke-width="0.5"></path>
+					<path d="M0 60 Q 25 40 50 60 T 100 60" fill="none" stroke="white" stroke-width="0.5"></path>
+					<path d="M0 40 Q 25 20 50 40 T 100 40" fill="none" stroke="white" stroke-width="0.5"></path>
+				</svg>
+			</div>
+			<div class="container relative z-10 mx-auto px-8">
+				<div class="mx-auto mb-16 max-w-4xl text-center">
+					<h2 class="font-headline mb-6 text-5xl font-bold">Begin Your Intelligence Journey</h2>
+					<p class="font-body text-lg text-surface/70">
+						Partner with the coastal curator for bespoke maritime strategies and data precision.
+					</p>
+				</div>
+				<div
+					class="editorial-shadow rounded-[40px] border border-white/5 bg-surface-container-low/10 p-8 backdrop-blur-md md:p-16"
+				>
+					<ContactForm variant="dark" client:visible />
+				</div>
+			</div>
+		</section>
+	</main>
+</Layout>

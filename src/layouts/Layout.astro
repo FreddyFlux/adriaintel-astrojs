@@ -1,0 +1,76 @@
+---
+import '../styles/global.css';
+import SiteFooter from '@/components/site/SiteFooter.astro';
+import { SiteHeader } from '@/components/site/SiteHeader';
+import JsonLd from '@/components/seo/JsonLd.astro';
+
+interface Props {
+	title: string;
+	description: string;
+	/** Path only, e.g. /about — canonical is built from site */
+	pathname?: string;
+	/** Absolute URL or site-relative path (leading slash) */
+	ogImage?: string;
+	ogType?: 'website' | 'article';
+	jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+	noIndex?: boolean;
+}
+
+const {
+	title,
+	description,
+	pathname = Astro.url.pathname,
+	ogImage,
+	ogType = 'website',
+	jsonLd,
+	noIndex = false,
+} = Astro.props;
+
+const site = Astro.site?.href?.replace(/\/$/, '') ?? '';
+const canonicalUrl = site ? `${site}${pathname === '/' ? '' : pathname}` : Astro.url.href;
+const ogAbsolute =
+	ogImage == null
+		? undefined
+		: ogImage.startsWith('http')
+			? ogImage
+			: site
+				? `${site}${ogImage.startsWith('/') ? ogImage : `/${ogImage}`}`
+				: ogImage;
+---
+
+<!doctype html>
+<html class="light" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		{noIndex ? <meta name="robots" content="noindex, nofollow" /> : null}
+		<link rel="canonical" href={canonicalUrl} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:type" content={ogType} />
+		<meta property="og:site_name" content="AdriaIntel" />
+		{ogAbsolute ? <meta property="og:image" content={ogAbsolute} /> : null}
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		{ogAbsolute ? <meta name="twitter:image" content={ogAbsolute} /> : null}
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap"
+			rel="stylesheet"
+		/>
+		{jsonLd ? <JsonLd data={jsonLd} /> : null}
+	</head>
+	<body class="bg-background text-on-background font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
+		<SiteHeader client:visible currentPath={Astro.url.pathname} />
+		<slot />
+		<SiteFooter />
+	</body>
+</html>
