@@ -70,6 +70,7 @@ const ogAbsolute =
 			rel="stylesheet"
 		/>
 		{jsonLd ? <JsonLd data={jsonLd} /> : null}
+		<slot name="head" />
 	</head>
 	<body class="bg-background text-on-background font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
 		<SiteHeader client:visible currentPath={Astro.url.pathname} />
