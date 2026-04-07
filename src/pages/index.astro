@@ -1,7 +1,12 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import { ContactForm } from '@/components/site/ContactForm';
+import heroTextMask from '../assets/adriaintel-hero-text-mask.jpeg';
+import adriaintelBoat from '../assets/adriaintel-boat.png';
+import adriaintelOyster from '../assets/adriaintel-oyster.png';
+import adriaintelOffice from '../assets/adriaintel-office.png';
 
 const siteUrl = Astro.site?.href?.replace(/\/$/, '') ?? '';
 const jsonLd = {
@@ -48,7 +53,8 @@ const teasers = allArticles.slice(0, 3);
 						>Coastal Precision • Global Expertise</span
 					>
 					<h1
-						class="font-headline mb-8 text-7xl leading-[0.9] font-extrabold tracking-tighter text-mask-ocean md:text-9xl"
+						class="font-headline mb-8 bg-cover bg-center bg-clip-text text-7xl font-extrabold leading-[0.9] tracking-tighter text-transparent md:text-9xl"
+						style={{ backgroundImage: `url(${heroTextMask.src})` }}
 					>
 						AdriaIntel
 					</h1>
@@ -78,14 +84,15 @@ const teasers = allArticles.slice(0, 3);
 			<div
 				class="absolute right-0 top-1/2 hidden h-3/4 w-1/3 -translate-y-1/2 overflow-hidden rounded-l-[100px] editorial-shadow xl:block"
 			>
-				<img
+				<Image
 					class="h-full w-full object-cover"
-					src="https://lh3.googleusercontent.com/aida-public/AB6AXuAR1Tq0_vg4OEVPJqKRR-8RuoiISvCT4ZRIdko3JfwDMqKbEop6SsguayJy6UTVlT9FC-_dpJ-KIuirOMtaveKW5THyiZk27TH4aganWQ1nAvi5vnL495gy6m-l40DbrZTuXh1O158b1l6Zml0IWGHd6twIVdTt6B-0oI49FsQWTJ63vA2gYIHoKAFkFuR2JQ6Cs6G2L1VCMiFApDny7D5vlsChRnSa0bbnrzrz6KDMQVGTnih7eGY4k66J_pgPiAF60ZWHGyjiGvTv"
+					src={adriaintelBoat}
 					alt=""
 					width={800}
 					height={1000}
 					loading="eager"
 					fetchpriority="high"
+					sizes="(min-width: 1280px) 33vw, 0px"
 				/>
 			</div>
 		</section>
@@ -97,23 +104,25 @@ const teasers = allArticles.slice(0, 3);
 						<div
 							class="absolute -left-12 -top-12 z-0 scale-95 rotate-3 rounded-xl bg-surface-container-lowest p-4 editorial-shadow"
 						>
-							<img
+							<Image
 								class="h-64 w-64 rounded-lg object-cover"
-								src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoGXQKcWsWqyXSJdos1_RJ44Yp5H-Myvq2Kjy0z268wF-GbmMy8jnHIQ0ArzBoGni6AQ3Y5D52pNRoWKVF1fenGWkfEpWPwrULrG2_YWX_LQmM2zSj7-U8Clcl5yCmeHtRELa5mJFHfBf7MHcjPi3rRST3pwFXw2qd223H7xDI3Okel_D9gCmMH_1Jh5AwyrPen3Bm2Hi2f72McrEkV7jYna_VnnXJjItMvwFn6MW5h0Tn0Bqsm-0D_5H3sJVTRrFT2AuiyeUxGD8s"
+								src={adriaintelOyster}
 								alt=""
 								width={256}
 								height={256}
 								loading="lazy"
+								sizes="256px"
 							/>
 						</div>
 						<div class="relative z-10 overflow-hidden rounded-xl editorial-shadow">
-							<img
+							<Image
 								class="aspect-[4/5] w-full object-cover"
-								src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2Oj9zeSbjptTqy6tabL576I72cCKODdfC8rl6KBbxxHkG9JaGvpp_2MPeeOwIwTLsr9v0mkqb6No00NJAsLLmuBzaSlLEnYFjd9WG8EI-PLEDUdG_dh7IG6TJctXY1uI2rkeLBKvkRxbQohxl3PBCHt1oFex28jSTFo7513JClEIfbuBA5pwjRjSWQt01U-tJeXZOr4QKmueQGZS_9hYOsVBVIy8kwFbSCmEEHNtLdpr5lBbcu64xpGULziJ9RpDFzQZEkFcKcgZ8"
+								src={adriaintelOffice}
 								alt=""
 								width={640}
 								height={800}
 								loading="lazy"
+								sizes="(min-width: 768px) 50vw, 100vw"
 							/>
 						</div>
 					</div>

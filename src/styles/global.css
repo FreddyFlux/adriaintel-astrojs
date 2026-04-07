@@ -172,14 +172,6 @@
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
     }
-    .text-mask-ocean {
-        background-image: url("https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=1600&h=600&fit=crop&q=80");
-        background-size: cover;
-        background-position: center;
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-    }
 }
 
 @layer base {

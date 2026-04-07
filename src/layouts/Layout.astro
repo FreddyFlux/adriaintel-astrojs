@@ -46,6 +46,8 @@ const ogAbsolute =
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
+		<meta name="author" content="AdriaIntel" />
+		<meta name="theme-color" content="#084235" />
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		{noIndex ? <meta name="robots" content="noindex, nofollow" /> : null}
@@ -60,10 +62,11 @@ const ogAbsolute =
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
 		{ogAbsolute ? <meta name="twitter:image" content={ogAbsolute} /> : null}
+		<link rel="alternate" type="application/rss+xml" title="AdriaIntel" href="/rss.xml" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=optional"
 			rel="stylesheet"
 		/>
 		{jsonLd ? <JsonLd data={jsonLd} /> : null}

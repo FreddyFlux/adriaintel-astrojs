@@ -46,7 +46,7 @@ This site uses **Astro 6** with the **React** integration (`@astrojs/react`). Th
 
 ## Icons
 
-- Page shells load **Material Symbols Outlined** from Google Fonts in [`Layout.astro`](../src/layouts/Layout.astro) so mockup markup can use `<span class="material-symbols-outlined">` consistently.
+- Page shells load **Material Symbols Outlined** from Google Fonts in [`Layout.astro`](../src/layouts/Layout.astro) with **`font-display: optional`** so the icon font does not block first paint (LCP). Mockup markup can use `<span class="material-symbols-outlined">` consistently.
 - **Lucide** (`lucide-react`) remains available for React-only UI where outlined icons are not required. Avoid mixing both in the same control unless there is a clear reason.
 
 ## References

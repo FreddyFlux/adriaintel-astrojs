@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import { ContactForm } from '@/components/site/ContactForm';
+import adriaintelDalmatiaHill from '../assets/adriaintel-dalmatia-hill.png';
 ---
 
 <Layout
@@ -35,13 +37,14 @@ import { ContactForm } from '@/components/site/ContactForm';
 
 			<div class="space-y-8 lg:col-span-5">
 				<div class="relative aspect-[4/3] overflow-hidden rounded-xl editorial-shadow">
-					<img
+					<Image
 						class="h-full w-full object-cover grayscale-[0.2] transition-transform duration-700 group-hover:scale-105"
-						src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4pCRkruDQobovLE_U-l84DjYjot-EwM2yI5rn0DVKqrK5oFCeDvNtPBKLUHmgWK5jY_-shWMl_O8ix6KEJYcHlZC9oX4bmVLVWsF78mGOgBTeSWSVIkVm0vHYNW5ALopIbepSLCbCXRH8pvGHwN48DzO2_ggWQFkOT1dxgzGdtTBVHWeeVQEE-8RgLoF9Go4DhBeHc8qvgS969THIt9rEXMwricBFcUqbgJ1eUrYQcFD-Y2Y4sPz-KEYSPtgsXyma-wK7DEDmAOX8"
+						src={adriaintelDalmatiaHill}
 						alt="Mediterranean coastline"
 						width={800}
 						height={600}
 						loading="lazy"
+						sizes="(min-width: 1024px) 42vw, 100vw"
 					/>
 					<div class="absolute inset-0 bg-primary/10 mix-blend-multiply"></div>
 					<div

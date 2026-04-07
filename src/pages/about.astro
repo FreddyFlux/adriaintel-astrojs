@@ -1,5 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+import adriaintelCoastCity from '../assets/adriaintel-coast-city.png';
+import adriaintelGraphs from '../assets/adriaintel-graphs.png';
 ---
 
 <Layout
@@ -27,13 +30,14 @@ import Layout from '../layouts/Layout.astro';
 				<div
 					class="aspect-[4/5] overflow-hidden rounded-xl editorial-shadow md:translate-x-12 md:translate-y-12"
 				>
-					<img
+					<Image
 						class="h-full w-full object-cover"
-						src="https://lh3.googleusercontent.com/aida-public/AB6AXuALOkve7jXS4i5IDf36sI1VxqiqkhkFqT_dv_yV894Odr581YFZeaFJK-cgepO0djRUcwW1xXDzS0hNZHuKfkHQCbc6OWOA4LpMA0pQ1LUlXZhZgGCs1WlpvI7BtCRqY1fdrqflBcjRgWHuRu7edSgqFuQHHJIJDOSrfJGv6lGGFZN3UCGFUOk0scOv2DRaGGb5jHX0e-uMRdQBdJiFJcJjGtzB2w0Wz0EusWw4uKYuswAJiY8mLkrl7V2zVsaNp3q-1b3CCZOEz_lB"
+						src={adriaintelCoastCity}
 						alt="Adriatic coastline"
 						width={640}
 						height={800}
 						loading="eager"
+						sizes="(min-width: 768px) 42vw, 100vw"
 					/>
 				</div>
 				<div
@@ -134,13 +138,15 @@ import Layout from '../layouts/Layout.astro';
 					class="flex flex-col items-center gap-8 rounded-xl bg-surface p-10 editorial-shadow md:col-span-2 md:flex-row"
 				>
 					<div class="md:w-1/2">
-						<img
+						<Image
 							class="h-48 w-full rounded-xl object-cover"
-							src="https://lh3.googleusercontent.com/aida-public/AB6AXuAp2xtMYDxqZIvByokvT8NVPJYNfBPpTCsDh1mhb-Za9-FVys2N70o-5o13k6uyQ2hXNCituvCpCzJCZT96GJ5dXPyB_rP9PIq0lyLmfWAOGIMG2DpeOGuUOo2NL_fKcDUoHHvYge2SlzOS7rsG5sjw43Sp235eO9Mw42eOiD0SpiPRh02DE6dPNf9UNXXz9B2FoEHUSualbaZL3tKeXOimw6Y9a64UHgg2N03Dl63Ilco6dbu_10uwIntxOd8UtJPpEbgMZ5DM6QIB"
+							src={adriaintelGraphs}
 							alt="Maritime data workspace"
 							width={800}
 							height={320}
 							loading="lazy"
+							sizes="(min-width: 768px) 42vw, 100vw"
+							decoding="async"
 						/>
 					</div>
 					<div class="md:w-1/2">
