@@ -1,0 +1,69 @@
+---
+import type { Mark, Props as $ } from 'astro-portabletext/lib/types';
+import { usePortableText } from 'astro-portabletext/utils';
+
+export type Props = $<Mark>;
+
+const props = Astro.props;
+const { node, index, isInline, ...attrs } = props;
+const markTypeIs = (markType: string) => markType === node.markType;
+
+const { getUnknownComponent } = usePortableText(node);
+
+const UnknownMarkType = getUnknownComponent();
+
+const site = Astro.site?.href?.replace(/\/$/, '') ?? '';
+
+function isExternalHref(href: string): boolean {
+	if (!href || href.startsWith('#') || href.startsWith('?')) return false;
+	if (href.startsWith('/') && !href.startsWith('//')) return false;
+	try {
+		const url = new URL(href, site || 'https://www.adriaintel.com');
+		if (!site) return url.protocol === 'http:' || url.protocol === 'https:';
+		const origin = new URL(site).origin;
+		return url.origin !== origin;
+	} catch {
+		return true;
+	}
+}
+
+const isLink = node.markType === 'link';
+const linkHref = isLink ? (node as unknown as Mark<{ href: string }>).markDef.href : '';
+const linkExternal = typeof linkHref === 'string' && isExternalHref(linkHref);
+---
+
+{
+	markTypeIs('code') ? (
+		<code {...attrs}>
+			<slot />
+		</code>
+	) : markTypeIs('em') ? (
+		<em {...attrs}>
+			<slot />
+		</em>
+	) : markTypeIs('link') ? (
+		<a
+			href={linkHref}
+			{...attrs}
+			{...(linkExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+		>
+			<slot />
+		</a>
+	) : markTypeIs('strike-through') ? (
+		<del {...attrs}>
+			<slot />
+		</del>
+	) : markTypeIs('strong') ? (
+		<strong {...attrs}>
+			<slot />
+		</strong>
+	) : markTypeIs('underline') ? (
+		<span style="text-decoration: underline;" {...attrs}>
+			<slot />
+		</span>
+	) : (
+		<UnknownMarkType {...props}>
+			<slot />
+		</UnknownMarkType>
+	)
+}

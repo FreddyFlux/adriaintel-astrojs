@@ -1,0 +1,31 @@
+---
+import { PortableText } from 'astro-portabletext';
+import AdriaBlock from './portable/AdriaBlock.astro';
+import AdriaMark from './portable/AdriaMark.astro';
+
+interface Props {
+	value: unknown;
+}
+
+const { value } = Astro.props;
+---
+
+<div
+	class="prose-adria space-y-6 text-lg leading-relaxed text-on-surface [&_ul]:my-4 [&_ul]:list-disc [&_ul]:pl-6 [&_ol]:my-4 [&_ol]:list-decimal [&_ol]:pl-6 [&_li]:text-secondary"
+>
+	<PortableText
+		value={value}
+		components={{
+			block: {
+				h2: AdriaBlock,
+				h3: AdriaBlock,
+				normal: AdriaBlock,
+			},
+			mark: {
+				strong: AdriaMark,
+				em: AdriaMark,
+				link: AdriaMark,
+			},
+		}}
+	/>
+</div>

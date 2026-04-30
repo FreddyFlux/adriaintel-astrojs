@@ -1,19 +1,38 @@
 import * as React from "react";
 
-const FILTERS = [
-	"All Insights",
-	"Market Analysis",
-	"Maritime Data",
-	"Supply Chain",
-	"Sustainability",
-] as const;
+const ALL_LABEL = "All Insights";
 
-export function ArticleFilterBar() {
-	const [active, setActive] = React.useState<(typeof FILTERS)[number]>("All Insights");
+const listingSelector = "[data-article-listing-item]";
+
+function applyCategoryFilter(active: string) {
+	const items = document.querySelectorAll<HTMLElement>(listingSelector);
+	items.forEach((el) => {
+		const cat = el.getAttribute("data-category") ?? "";
+		if (active === ALL_LABEL) {
+			el.hidden = false;
+		} else {
+			el.hidden = cat !== active;
+		}
+	});
+}
+
+export type ArticleFilterBarProps = {
+	/** Distinct category values from Sanity (build-time), sorted for stable UI */
+	categories: string[];
+};
+
+export function ArticleFilterBar({ categories }: ArticleFilterBarProps) {
+	const [active, setActive] = React.useState<string>(ALL_LABEL);
+
+	React.useEffect(() => {
+		applyCategoryFilter(active);
+	}, [active]);
+
+	const filters = React.useMemo(() => [ALL_LABEL, ...categories], [categories]);
 
 	return (
 		<div className="mb-16 flex flex-wrap items-center gap-4 border-b border-outline-variant/15 pb-8">
-			{FILTERS.map((label) => {
+			{filters.map((label) => {
 				const isActive = active === label;
 				return (
 					<button

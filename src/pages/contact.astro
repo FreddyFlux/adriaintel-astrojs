@@ -36,9 +36,9 @@ import adriaintelDalmatiaHill from '../assets/adriaintel-dalmatia-hill.png';
 			</div>
 
 			<div class="space-y-8 lg:col-span-5">
-				<div class="relative aspect-[4/3] overflow-hidden rounded-xl editorial-shadow">
+				<div class="group relative isolate aspect-[4/3] overflow-hidden rounded-xl editorial-shadow">
 					<Image
-						class="h-full w-full object-cover grayscale-[0.2] transition-transform duration-700 group-hover:scale-105"
+						class="absolute inset-0 z-0 h-full w-full object-cover grayscale-[0.2] transition-transform duration-700 group-hover:scale-105"
 						src={adriaintelDalmatiaHill}
 						alt="Mediterranean coastline"
 						width={800}
@@ -46,9 +46,9 @@ import adriaintelDalmatiaHill from '../assets/adriaintel-dalmatia-hill.png';
 						loading="lazy"
 						sizes="(min-width: 1024px) 42vw, 100vw"
 					/>
-					<div class="absolute inset-0 bg-primary/10 mix-blend-multiply"></div>
+					<div class="absolute inset-0 z-1 bg-primary/12"></div>
 					<div
-						class="glass-nav absolute bottom-6 left-6 right-6 flex items-center justify-between rounded-xl p-6"
+						class="glass-nav absolute bottom-6 left-6 right-6 z-2 flex items-center justify-between rounded-xl bg-white/60 p-6"
 					>
 						<div>
 							<p class="font-headline font-bold text-primary">Split, Croatia</p>
@@ -59,7 +59,7 @@ import adriaintelDalmatiaHill from '../assets/adriaintel-dalmatia-hill.png';
 						</div>
 					</div>
 					<div
-						class="absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 animate-pulse rounded-full bg-tertiary ring-8 ring-tertiary/20"
+						class="absolute left-1/2 top-1/2 z-3 h-4 w-4 -translate-x-1/2 -translate-y-1/2 animate-pulse rounded-full bg-tertiary ring-8 ring-tertiary/20"
 					>
 					</div>
 				</div>

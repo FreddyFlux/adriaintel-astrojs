@@ -1,21 +1,19 @@
 import rss from '@astrojs/rss';
 import type { APIContext } from 'astro';
-import { getCollection } from 'astro:content';
+import { getAllArticles } from '@/lib/sanity';
 
 export async function GET(context: APIContext) {
-	const articles = (await getCollection('articles')).sort(
-		(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-	);
+	const articles = await getAllArticles();
 
 	return rss({
 		title: 'AdriaIntel | Maritime Intelligence',
 		description: 'Articles and analysis on Adriatic seafood markets, logistics, and blue economy trends.',
 		site: context.site ?? 'https://www.adriaintel.com',
 		items: articles.map((post) => ({
-			title: post.data.title,
-			pubDate: post.data.pubDate,
-			description: post.data.description,
-			link: `/articles/${post.id}/`,
+			title: post.title,
+			pubDate: new Date(post.publishedAt),
+			description: post.excerpt,
+			link: `/articles/${post.slug}/`,
 		})),
 		customData: `<language>en-us</language>`,
 	});

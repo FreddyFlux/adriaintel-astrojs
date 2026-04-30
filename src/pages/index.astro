@@ -1,8 +1,8 @@
 ---
-import { getCollection } from 'astro:content';
 import { getImage, Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import { ContactForm } from '@/components/site/ContactForm';
+import { getAllArticles, getFeaturedArticles, urlFor } from '@/lib/sanity';
 import heroTextMask from '../assets/adriaintel-hero-text-mask.jpeg';
 import adriaintelBoat from '../assets/adriaintel-boat.png';
 import adriaintelOyster from '../assets/adriaintel-oyster.png';
@@ -26,10 +26,11 @@ const jsonLd = {
 	],
 };
 
-const allArticles = (await getCollection('articles')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
-const teasers = allArticles.slice(0, 3);
+const featured = await getFeaturedArticles();
+const allArticles = await getAllArticles();
+const featuredIds = new Set(featured.map((a) => a._id));
+const pad = allArticles.filter((a) => !featuredIds.has(a._id));
+const teasers = [...featured, ...pad].slice(0, 3);
 
 /** WebP + capped width: mask is texture-only; avoids shipping the 2.75 MB JPEG. */
 const heroTextMaskOptimized = await getImage({
@@ -194,27 +195,27 @@ const heroTextMaskOptimized = await getImage({
 				<div class="grid grid-cols-1 gap-12 md:grid-cols-3">
 					{
 						teasers.map((post) => (
-							<a href={`/articles/${post.id}`} class="group cursor-pointer">
+							<a href={`/articles/${post.slug}`} class="group cursor-pointer">
 								<div class="relative mb-6 aspect-[16/10] overflow-hidden rounded-xl bg-surface-container-high">
-									{post.data.heroImage ? (
+									{post.heroImage ? (
 										<img
 											class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-											src={post.data.heroImage}
-											alt=""
+											src={urlFor(post.heroImage).width(800).auto('format').url()}
+											alt={post.heroImageAlt}
 											width={640}
 											height={400}
 											loading="lazy"
 										/>
 									) : null}
 									<div class="glass-nav absolute left-4 top-4 rounded-full bg-surface/90 px-3 py-1 text-[10px] font-bold uppercase tracking-tighter font-label">
-										{post.data.category ?? 'Insight'}
+										{post.category ?? 'Insight'}
 									</div>
 								</div>
 								<h3 class="font-headline mb-3 text-xl font-bold text-primary transition-colors group-hover:text-tertiary">
-									{post.data.title}
+									{post.title}
 								</h3>
 								<p class="line-clamp-2 text-sm leading-relaxed text-on-surface-variant">
-									{post.data.description}
+									{post.excerpt}
 								</p>
 							</a>
 						))
