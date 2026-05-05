@@ -24,8 +24,8 @@ export function ContactForm({
 
 	const field =
 		isDark
-			? "w-full border-0 border-b border-white/10 bg-transparent py-3 text-lg text-surface placeholder:text-white/20 focus:border-tertiary focus:ring-0"
-			: "w-full border-0 border-b border-outline-variant bg-transparent py-2 text-primary placeholder:text-outline-variant/60 transition-all duration-300 focus:border-primary focus:ring-0";
+			? "w-full border-0 border-b border-white/10 bg-transparent px-2 py-3 text-lg text-surface placeholder:text-white/20 focus:border-tertiary focus:ring-0"
+			: "w-full border-0 border-b border-outline-variant bg-transparent px-2 py-2 text-primary placeholder:text-outline-variant/60 transition-all duration-300 focus:border-primary focus:ring-0";
 
 	if (variant === "dark") {
 		return (
