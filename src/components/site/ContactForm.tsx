@@ -85,8 +85,8 @@ export function ContactForm({
 						{status === "sent" ? "Received" : "Send Inquiry"}
 					</button>
 					{status === "sent" ? (
-						<p className="text-sm text-surface/70" role="status">
-							Thank you — we will respond shortly.
+						<p className="motion-reveal text-sm text-surface/70" role="status">
+							Thank you, we will respond shortly.
 						</p>
 					) : null}
 				</div>
@@ -141,6 +141,11 @@ export function ContactForm({
 					{status === "sent" ? "Sent" : "Send Inquiry"}
 					<span className="material-symbols-outlined text-lg">arrow_forward</span>
 				</button>
+				{status === "sent" ? (
+					<p className="motion-reveal mt-3 text-sm text-secondary" role="status">
+						Thank you, we will respond shortly.
+					</p>
+				) : null}
 			</div>
 		</form>
 	);

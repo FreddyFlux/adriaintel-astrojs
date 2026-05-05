@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import PortableTextRenderer from '@/components/content/PortableTextRenderer.astro';
 import { getAllArticles, getArticleBySlug, urlFor } from '@/lib/sanity';
@@ -76,14 +75,14 @@ const jsonLd = {
 >
 	<main class="mx-auto max-w-3xl px-6 pb-24 pt-32">
 		<article>
-			<p class="font-label mb-4 text-xs uppercase tracking-widest text-tertiary">
+			<p class="font-label motion-reveal mb-4 text-xs uppercase tracking-widest text-tertiary">
 				{article.category ?? 'Maritime Intelligence'}
 			</p>
-			<h1 class="font-headline mb-6 text-4xl font-bold tracking-tight text-primary md:text-5xl">
+			<h1 class="font-headline motion-reveal motion-delay-1 mb-6 text-4xl font-bold tracking-tight text-primary md:text-5xl" transition:name={`article-title-${article.slug}`}>
 				{article.title}
 			</h1>
-			<p class="mb-10 text-secondary">{article.excerpt}</p>
-			<div class="mb-12 flex flex-wrap gap-4 text-sm text-secondary">
+			<p class="motion-reveal motion-delay-2 mb-10 text-secondary">{article.excerpt}</p>
+			<div class="motion-reveal motion-delay-3 mb-12 flex flex-wrap gap-4 text-sm text-secondary">
 				<time datetime={publishedAt.toISOString()}>
 					{publishedAt.toLocaleDateString('en-US', {
 						year: 'numeric',
@@ -96,13 +95,14 @@ const jsonLd = {
 			</div>
 			{
 				heroUrl ? (
-					<Image
+					<img
 						class="mb-12 w-full rounded-xl object-cover editorial-shadow"
 						src={heroUrl}
 						alt={article.heroImageAlt}
 						width={1200}
 						height={630}
 						loading="eager"
+						transition:name={`article-image-${article.slug}`}
 					/>
 				) : null
 			}

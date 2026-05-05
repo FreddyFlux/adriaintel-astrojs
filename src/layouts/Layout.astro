@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
 import SiteFooter from '@/components/site/SiteFooter.astro';
 import { SiteHeader } from '@/components/site/SiteHeader';
 import JsonLd from '@/components/seo/JsonLd.astro';
@@ -70,11 +71,16 @@ const ogAbsolute =
 			rel="stylesheet"
 		/>
 		{jsonLd ? <JsonLd data={jsonLd} /> : null}
+		<ClientRouter />
 		<slot name="head" />
 	</head>
 	<body class="bg-background text-on-background font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
-		<SiteHeader client:visible currentPath={Astro.url.pathname} />
-		<slot />
+		<div transition:persist>
+			<SiteHeader client:visible currentPath={Astro.url.pathname} />
+		</div>
+		<div transition:animate="fade">
+			<slot />
+		</div>
 		<SiteFooter />
 	</body>
 </html>

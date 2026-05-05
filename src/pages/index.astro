@@ -65,22 +65,22 @@ const heroTextMaskOptimized = await getImage({
 			<div class="container relative z-10 mx-auto px-8">
 				<div class="max-w-5xl">
 					<span
-						class="font-label mb-6 inline-block rounded-full bg-tertiary-fixed/30 px-3 py-1 text-xs uppercase tracking-[0.2em] text-tertiary"
+						class="font-label motion-reveal mb-6 inline-block rounded-full bg-tertiary-fixed/30 px-3 py-1 text-xs uppercase tracking-[0.2em] text-tertiary"
 						>Coastal Precision • Global Expertise</span
 					>
 					<h1
-						class="font-headline mb-8 bg-cover bg-center bg-clip-text text-7xl font-extrabold leading-[0.9] tracking-tighter text-transparent md:text-9xl"
+						class="font-headline motion-reveal motion-delay-1 mb-8 bg-cover bg-center bg-clip-text text-7xl font-extrabold leading-[0.9] tracking-tighter text-transparent md:text-9xl"
 						style={{ backgroundImage: `url(${heroTextMaskOptimized.src})` }}
 					>
 						AdriaIntel
 					</h1>
 					<p
-						class="font-body mb-12 max-w-2xl text-xl leading-relaxed text-secondary md:text-2xl"
+						class="font-body motion-reveal motion-delay-2 mb-12 max-w-2xl text-xl leading-relaxed text-secondary md:text-2xl"
 					>
 						Navigating the complexities of the global seafood industry with artisanal data intelligence
 						and Mediterranean market wisdom.
 					</p>
-					<div class="flex flex-col gap-6 sm:flex-row">
+					<div class="motion-reveal motion-delay-3 flex flex-col gap-6 sm:flex-row">
 						<a
 							href="/contact"
 							class="flex items-center justify-center gap-3 rounded-xl bg-primary px-10 py-5 font-headline text-lg font-bold text-on-primary transition-transform hover:scale-105"
@@ -98,7 +98,7 @@ const heroTextMaskOptimized = await getImage({
 				</div>
 			</div>
 			<div
-				class="absolute right-0 top-1/2 hidden h-3/4 w-1/3 -translate-y-1/2 overflow-hidden rounded-l-[100px] editorial-shadow xl:block"
+				class="motion-fade motion-delay-2 absolute right-0 top-1/2 hidden h-3/4 w-1/3 -translate-y-1/2 overflow-hidden rounded-l-[100px] editorial-shadow xl:block"
 			>
 				<Image
 					class="h-full w-full object-cover"
@@ -118,7 +118,7 @@ const heroTextMaskOptimized = await getImage({
 				<div class="grid grid-cols-1 items-center gap-24 md:grid-cols-2">
 					<div class="relative">
 						<div
-							class="absolute -left-12 -top-12 z-0 scale-95 rotate-3 rounded-xl bg-surface-container-lowest p-4 editorial-shadow"
+							class="motion-fade absolute -left-12 -top-12 z-0 scale-95 rotate-3 rounded-xl bg-surface-container-lowest p-4 editorial-shadow"
 						>
 							<Image
 								class="h-64 w-64 rounded-lg object-cover"
@@ -130,7 +130,7 @@ const heroTextMaskOptimized = await getImage({
 								sizes="256px"
 							/>
 						</div>
-						<div class="relative z-10 overflow-hidden rounded-xl editorial-shadow">
+						<div class="motion-reveal-scale motion-delay-1 relative z-10 overflow-hidden rounded-xl editorial-shadow">
 							<Image
 								class="aspect-[4/5] w-full object-cover"
 								src={adriaintelOffice}
@@ -150,7 +150,7 @@ const heroTextMaskOptimized = await getImage({
 							Based in the heart of the Adriatic, AdriaIntel bridges the gap between raw maritime data
 							and actionable executive strategy. We don't just provide reports; we curate intelligence.
 						</p>
-						<div class="grid grid-cols-2 gap-8 pt-8">
+						<div class="motion-reveal motion-delay-1 grid grid-cols-2 gap-8 pt-8">
 							<div>
 								<h4 class="font-headline text-3xl font-bold text-tertiary">120+</h4>
 								<p class="font-label text-sm uppercase tracking-widest text-secondary">
@@ -180,7 +180,7 @@ const heroTextMaskOptimized = await getImage({
 
 		<section class="overflow-hidden bg-surface py-32">
 			<div class="container mx-auto px-8">
-				<div class="mb-16 flex items-end justify-between">
+				<div class="motion-reveal mb-16 flex items-end justify-between">
 					<div>
 						<span class="font-label text-xs uppercase tracking-[0.2em] text-tertiary">The Registry</span>
 						<h2 class="font-headline mt-2 text-4xl font-bold text-primary md:text-5xl">
@@ -194,8 +194,8 @@ const heroTextMaskOptimized = await getImage({
 				</div>
 				<div class="grid grid-cols-1 gap-12 md:grid-cols-3">
 					{
-						teasers.map((post) => (
-							<a href={`/articles/${post.slug}`} class="group cursor-pointer">
+						teasers.map((post, index) => (
+							<a href={`/articles/${post.slug}`} class="motion-reveal-scale group cursor-pointer" style={`animation-delay: ${index * 80}ms`}>
 								<div class="relative mb-6 aspect-[16/10] overflow-hidden rounded-xl bg-surface-container-high">
 									{post.heroImage ? (
 										<img
@@ -205,13 +205,14 @@ const heroTextMaskOptimized = await getImage({
 											width={640}
 											height={400}
 											loading="lazy"
+											transition:name={`article-image-${post.slug}`}
 										/>
 									) : null}
 									<div class="glass-nav absolute left-4 top-4 rounded-full bg-surface/90 px-3 py-1 text-[10px] font-bold uppercase tracking-tighter font-label">
 										{post.category ?? 'Insight'}
 									</div>
 								</div>
-								<h3 class="font-headline mb-3 text-xl font-bold text-primary transition-colors group-hover:text-tertiary">
+								<h3 class="font-headline mb-3 text-xl font-bold text-primary transition-colors group-hover:text-tertiary" transition:name={`article-title-${post.slug}`}>
 									{post.title}
 								</h3>
 								<p class="line-clamp-2 text-sm leading-relaxed text-on-surface-variant">
@@ -233,14 +234,14 @@ const heroTextMaskOptimized = await getImage({
 				</svg>
 			</div>
 			<div class="container relative z-10 mx-auto px-8">
-				<div class="mx-auto mb-16 max-w-4xl text-center">
+				<div class="motion-reveal mx-auto mb-16 max-w-4xl text-center">
 					<h2 class="font-headline mb-6 text-5xl font-bold">Begin Your Intelligence Journey</h2>
 					<p class="font-body text-lg text-surface/70">
 						Partner with the coastal curator for bespoke maritime strategies and data precision.
 					</p>
 				</div>
 				<div
-					class="editorial-shadow rounded-[40px] border border-white/5 bg-surface-container-low/10 p-8 backdrop-blur-md md:p-16"
+					class="motion-reveal-scale motion-delay-1 editorial-shadow rounded-[40px] border border-white/5 bg-surface-container-low/10 p-8 backdrop-blur-md md:p-16"
 				>
 					<ContactForm variant="dark" client:visible />
 				</div>

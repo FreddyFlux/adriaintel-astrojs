@@ -10,7 +10,7 @@ import adriaintelDalmatiaHill from '../assets/adriaintel-dalmatia-hill.png';
 	description="Connect with Mediterranean experts for coastal market intelligence and artisanal maritime data."
 >
 	<main class="mx-auto max-w-7xl px-6 pb-20 pt-32">
-		<header class="mb-20">
+		<header class="motion-reveal mb-20">
 			<div class="max-w-3xl">
 				<span class="font-label mb-4 block text-xs uppercase tracking-widest text-tertiary"
 					>Get in Touch</span
@@ -29,14 +29,14 @@ import adriaintelDalmatiaHill from '../assets/adriaintel-dalmatia-hill.png';
 
 		<div class="grid grid-cols-1 items-start gap-8 lg:grid-cols-12">
 			<div
-				class="relative overflow-hidden rounded-xl bg-surface-container-lowest p-8 editorial-shadow md:col-span-7 md:p-12"
+				class="motion-reveal-scale relative overflow-hidden rounded-xl bg-surface-container-lowest p-8 editorial-shadow md:col-span-7 md:p-12"
 			>
 				<div class="absolute right-0 top-0 h-32 w-32 rounded-bl-3xl bg-primary-container opacity-5"></div>
 				<ContactForm variant="light" client:visible />
 			</div>
 
 			<div class="space-y-8 lg:col-span-5">
-				<div class="group relative isolate aspect-[4/3] overflow-hidden rounded-xl editorial-shadow">
+				<div class="motion-reveal-scale motion-delay-1 group relative isolate aspect-[4/3] overflow-hidden rounded-xl editorial-shadow">
 					<Image
 						class="absolute inset-0 z-0 h-full w-full object-cover grayscale-[0.2] transition-transform duration-700 group-hover:scale-105"
 						src={adriaintelDalmatiaHill}
@@ -59,12 +59,12 @@ import adriaintelDalmatiaHill from '../assets/adriaintel-dalmatia-hill.png';
 						</div>
 					</div>
 					<div
-						class="absolute left-1/2 top-1/2 z-3 h-4 w-4 -translate-x-1/2 -translate-y-1/2 animate-pulse rounded-full bg-tertiary ring-8 ring-tertiary/20"
+						class="contact-map-pulse absolute left-1/2 top-1/2 z-3 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-tertiary ring-8 ring-tertiary/20"
 					>
 					</div>
 				</div>
 
-				<div class="space-y-8 rounded-xl bg-surface-container-low p-10">
+				<div class="motion-reveal motion-delay-2 space-y-8 rounded-xl bg-surface-container-low p-10">
 					<div class="flex items-start gap-4">
 						<div class="rounded-lg bg-primary-container/20 p-3 text-primary">
 							<span class="material-symbols-outlined">mail</span>

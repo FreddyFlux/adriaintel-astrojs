@@ -22,7 +22,7 @@ function fmt(d: string) {
 	pathname="/articles"
 >
 	<main class="pb-24 pt-32">
-		<header class="mx-auto mb-20 max-w-7xl px-8">
+		<header class="motion-reveal mx-auto mb-20 max-w-7xl px-8">
 			<div class="max-w-3xl">
 				<span class="font-label mb-4 block text-xs font-bold uppercase tracking-widest text-tertiary"
 					>Intelligence Hub</span
@@ -46,7 +46,7 @@ function fmt(d: string) {
 		{
 			featured ? (
 				<section
-					class="mx-auto mb-32 max-w-7xl px-8"
+					class="article-filter-item motion-reveal-scale mx-auto mb-32 max-w-7xl px-8"
 					data-article-listing-item
 					data-category={featured.category ?? ''}
 				>
@@ -60,6 +60,7 @@ function fmt(d: string) {
 									width={1200}
 									height={800}
 									loading="eager"
+									transition:name={`article-image-${featured.slug}`}
 								/>
 							) : null}
 							<div class="absolute inset-0 bg-gradient-to-r from-primary/40 to-transparent" />
@@ -68,7 +69,7 @@ function fmt(d: string) {
 							<span class="font-label mb-4 block text-[10px] font-bold uppercase tracking-widest text-tertiary">
 								Featured Analysis
 							</span>
-							<h2 class="font-headline mb-6 text-3xl font-bold leading-tight tracking-tight text-on-surface md:text-4xl">
+							<h2 class="font-headline mb-6 text-3xl font-bold leading-tight tracking-tight text-on-surface md:text-4xl" transition:name={`article-title-${featured.slug}`}>
 								{featured.title}
 							</h2>
 							<p class="mb-8 leading-relaxed text-secondary">{featured.excerpt}</p>
@@ -103,9 +104,10 @@ function fmt(d: string) {
 		<section class="mx-auto max-w-7xl px-8">
 			<div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
 				{
-					rest.map((post) => (
+					rest.map((post, index) => (
 						<article
-							class="group flex flex-col gap-6"
+							class="article-filter-item motion-reveal-scale group flex flex-col gap-6"
+							style={`animation-delay: ${index * 60}ms`}
 							data-article-listing-item
 							data-category={post.category ?? ''}
 						>
@@ -118,6 +120,7 @@ function fmt(d: string) {
 										width={600}
 										height={750}
 										loading="lazy"
+											transition:name={`article-image-${post.slug}`}
 									/>
 								) : null}
 								<div class="absolute left-4 top-4">
@@ -134,7 +137,7 @@ function fmt(d: string) {
 										{post.readTime != null ? `${post.readTime} min read` : 'Read'}
 									</span>
 								</div>
-								<h3 class="font-headline mb-3 text-2xl font-bold tracking-tight text-on-surface transition-colors group-hover:text-primary">
+								<h3 class="font-headline mb-3 text-2xl font-bold tracking-tight text-on-surface transition-colors group-hover:text-primary" transition:name={`article-title-${post.slug}`}>
 									{post.title}
 								</h3>
 								<p class="mb-6 line-clamp-3 text-sm leading-relaxed text-secondary">{post.excerpt}</p>
@@ -152,7 +155,7 @@ function fmt(d: string) {
 		</section>
 
 		<section class="mx-auto mt-32 max-w-7xl px-8">
-			<div class="relative overflow-hidden rounded-xl bg-primary p-12 md:p-20">
+			<div class="motion-reveal-scale relative overflow-hidden rounded-xl bg-primary p-12 md:p-20">
 				<div class="pointer-events-none absolute right-0 top-0 h-full w-1/2 opacity-10">
 					<svg class="h-full w-full object-cover" fill="none" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
 						<path

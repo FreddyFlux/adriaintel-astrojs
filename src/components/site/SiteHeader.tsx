@@ -1,4 +1,5 @@
 import * as React from "react";
+import adriaintelLogo from "@/assets/adriaintel-logo.svg";
 
 const links = [
 	{ href: "/", label: "Home" },
@@ -9,22 +10,44 @@ const links = [
 
 export function SiteHeader({ currentPath }: { currentPath: string }) {
 	const [open, setOpen] = React.useState(false);
+	const [pathname, setPathname] = React.useState(currentPath);
+
+	React.useEffect(() => {
+		function syncPathname() {
+			setPathname(window.location.pathname);
+			setOpen(false);
+		}
+
+		document.addEventListener("astro:page-load", syncPathname);
+		window.addEventListener("popstate", syncPathname);
+
+		return () => {
+			document.removeEventListener("astro:page-load", syncPathname);
+			window.removeEventListener("popstate", syncPathname);
+		};
+	}, []);
 
 	return (
 		<nav className="fixed top-0 z-50 flex w-full max-w-full items-center justify-between border-b border-white/5 bg-[#e6fff4]/80 px-6 py-5 backdrop-blur-xl md:px-8">
 			<div className="mx-auto flex w-full max-w-7xl items-center justify-between">
 				<a
 					href="/"
-					className="font-headline text-2xl font-bold tracking-tighter text-primary"
+					className="flex items-center gap-2.5 font-headline text-2xl font-bold tracking-tighter text-primary"
 				>
-					AdriaIntel
+					<img
+						src={adriaintelLogo.src}
+						alt=""
+						className="h-9 w-9 shrink-0"
+						aria-hidden="true"
+					/>
+					<span>AdriaIntel</span>
 				</a>
 				<div className="hidden items-center gap-10 md:flex">
 					{links.map(({ href, label }) => {
 						const active =
 							href === "/"
-								? currentPath === "/"
-								: currentPath.startsWith(href);
+								? pathname === "/"
+								: pathname.startsWith(href);
 						return (
 							<a
 								key={href}
@@ -61,7 +84,7 @@ export function SiteHeader({ currentPath }: { currentPath: string }) {
 				</div>
 			</div>
 			{open ? (
-				<div className="absolute left-0 right-0 top-full border-b border-outline-variant/20 bg-[#e6fff4]/95 px-6 py-6 shadow-lg backdrop-blur-xl md:hidden">
+				<div className="mobile-nav-panel absolute left-0 right-0 top-full border-b border-outline-variant/20 bg-[#e6fff4]/95 px-6 py-6 shadow-lg backdrop-blur-xl md:hidden">
 					<div className="mx-auto flex max-w-7xl flex-col gap-4">
 						{links.map(({ href, label }) => (
 							<a

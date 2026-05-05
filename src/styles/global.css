@@ -165,12 +165,122 @@
 }
 
 @layer utilities {
+    @keyframes adria-reveal-up {
+        from {
+            opacity: 0;
+            transform: translate3d(0, 18px, 0);
+        }
+        to {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+    @keyframes adria-reveal-scale {
+        from {
+            opacity: 0;
+            transform: translate3d(0, 14px, 0) scale(0.985);
+        }
+        to {
+            opacity: 1;
+            transform: translate3d(0, 0, 0) scale(1);
+        }
+    }
+
+    @keyframes adria-fade-in {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes adria-menu-in {
+        from {
+            opacity: 0;
+            transform: translate3d(0, -8px, 0);
+        }
+        to {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+    @keyframes adria-map-pulse {
+        0%,
+        100% {
+            transform: translate(-50%, -50%) scale(1);
+            box-shadow: 0 0 0 0 rgba(115, 92, 0, 0.22);
+        }
+        50% {
+            transform: translate(-50%, -50%) scale(1.08);
+            box-shadow: 0 0 0 14px rgba(115, 92, 0, 0);
+        }
+    }
+
     .editorial-shadow {
         box-shadow: 0 30px 50px -12px rgba(0, 32, 24, 0.06);
     }
     .glass-nav {
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
+    }
+    .motion-reveal {
+        animation: adria-reveal-up 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    .motion-reveal-scale {
+        animation: adria-reveal-scale 560ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    .motion-fade {
+        animation: adria-fade-in 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    .motion-delay-1 {
+        animation-delay: 90ms;
+    }
+    .motion-delay-2 {
+        animation-delay: 180ms;
+    }
+    .motion-delay-3 {
+        animation-delay: 270ms;
+    }
+    .mobile-nav-panel {
+        animation: adria-menu-in 180ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    .contact-map-pulse {
+        animation: adria-map-pulse 2800ms cubic-bezier(0.22, 1, 0.36, 1) infinite;
+    }
+    .article-filter-item {
+        transition:
+            opacity 220ms cubic-bezier(0.22, 1, 0.36, 1),
+            transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+            filter 220ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .article-filter-item.is-filtering-out {
+        opacity: 0;
+        transform: translate3d(0, 8px, 0) scale(0.985);
+        filter: blur(1px);
+    }
+    .article-filter-item.is-filtering-in {
+        animation: adria-reveal-scale 260ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .motion-reveal,
+        .motion-reveal-scale,
+        .motion-fade,
+        .mobile-nav-panel,
+        .contact-map-pulse,
+        .article-filter-item.is-filtering-in {
+            animation: none;
+        }
+
+        .article-filter-item,
+        .transition-transform,
+        .transition-colors,
+        .transition-all {
+            transition-duration: 1ms;
+        }
     }
 }
 
