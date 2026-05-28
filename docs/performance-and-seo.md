@@ -55,6 +55,7 @@ Each route should set (via the shared layout or wrappers):
 
 - **`/sitemap.xml`** is generated at build time from static routes plus Sanity articles (priorities, `lastmod`, image entries). See [`src/pages/sitemap.xml.ts`](../src/pages/sitemap.xml.ts) and [`src/lib/sitemap-seo.ts`](../src/lib/sitemap-seo.ts). `/sitemap-index.xml` redirects to `/sitemap.xml` for older links.
 - **`public/robots.txt`** allows crawlers; update the `Sitemap:` line to match your deployed origin if it differs from the default in that file.
+- **`public/llms.txt`** ([llmstxt.org](https://llmstxt.org/)) gives AI systems a curated site summary and key URLs at `/llms.txt`.
 - Ensure **Sanity env vars** are set on Vercel at build time so article URLs appear in the sitemap.
 - **RSS** is available at **`/rss.xml`** ([`src/pages/rss.xml.ts`](../src/pages/rss.xml.ts)) for subscribers and aggregators.
 

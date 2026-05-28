@@ -1,0 +1,22 @@
+# AdriaIntel
+
+> Maritime intelligence and boutique data consulting for the global seafood industry. AdriaIntel combines traditional maritime expertise with analytics to help businesses navigate market complexity, transparency, and predictive modeling.
+
+This site is the public marketing and insights presence for AdriaIntel. Primary content is in English. Article bodies are published from our CMS; use the articles index and RSS feed for the latest posts. For inquiries, email concierge@adriaintel.com.
+
+## Core pages
+
+- [Home](https://www.adriaintel.com/): Company overview, featured insights, and contact entry points
+- [About](https://www.adriaintel.com/about/): Mission, origin story, and approach to seafood industry intelligence
+- [Articles](https://www.adriaintel.com/articles/): Analysis and commentary on seafood markets and maritime data
+- [Contact](https://www.adriaintel.com/contact/): Reach Mediterranean market and data specialists
+
+## Machine-readable feeds
+
+- [RSS](https://www.adriaintel.com/rss.xml): Full article feed for aggregators and assistants
+- [Sitemap](https://www.adriaintel.com/sitemap.xml): All indexable URLs including individual articles
+
+## Optional
+
+- [Privacy policy](https://www.adriaintel.com/privacy/): How we handle personal data on this site
+- [Terms of use](https://www.adriaintel.com/terms/): Site terms and conditions
