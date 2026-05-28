@@ -4,6 +4,9 @@ import { ClientRouter } from 'astro:transitions';
 import SiteFooter from '@/components/site/SiteFooter.astro';
 import { SiteHeader } from '@/components/site/SiteHeader';
 import JsonLd from '@/components/seo/JsonLd.astro';
+import { getGtagHeadInlineScript } from '@/lib/gtagHeadSnippet';
+
+const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID?.trim();
 
 interface Props {
 	title: string;
@@ -75,6 +78,17 @@ const ogAbsolute =
 			rel="stylesheet"
 		/>
 		{jsonLd ? <JsonLd data={jsonLd} /> : null}
+		{
+			gaMeasurementId ? (
+				<>
+					<script is:inline set:html={getGtagHeadInlineScript()} />
+					<script
+						async
+						src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
+					/>
+				</>
+			) : null
+		}
 		<ClientRouter />
 		<slot name="head" />
 	</head>

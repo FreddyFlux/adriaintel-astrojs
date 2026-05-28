@@ -7,8 +7,8 @@ declare global {
 
 const measurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID?.trim();
 
-let scriptLoaded = false;
 let trackingEnabled = false;
+let configured = false;
 
 function warnMissingId() {
 	if (import.meta.env.DEV) {
@@ -16,47 +16,57 @@ function warnMissingId() {
 	}
 }
 
-function ensureGtag(): typeof window.gtag | undefined {
+/** Must match Google's snippet: push `arguments`, not a rest-parameter array. */
+export function ensureGtag(): typeof window.gtag {
 	window.dataLayer = window.dataLayer ?? [];
 	if (!window.gtag) {
-		window.gtag = function gtag(...args: unknown[]) {
-			window.dataLayer?.push(args);
+		window.gtag = function gtag() {
+			window.dataLayer?.push(arguments);
 		};
 	}
 	return window.gtag;
 }
 
-function loadGtagScript(): Promise<void> {
-	if (!measurementId) {
-		warnMissingId();
-		return Promise.resolve();
-	}
-	if (scriptLoaded) return Promise.resolve();
+const consentDenied = {
+	ad_storage: 'denied',
+	ad_user_data: 'denied',
+	ad_personalization: 'denied',
+	analytics_storage: 'denied',
+} as const;
 
-	return new Promise((resolve, reject) => {
-		const existing = document.querySelector(`script[src*="googletagmanager.com/gtag/js"]`);
-		if (existing) {
-			scriptLoaded = true;
+const analyticsGranted = {
+	analytics_storage: 'granted',
+} as const;
+
+function waitForGtagScript(): Promise<void> {
+	return new Promise((resolve) => {
+		const script = document.querySelector('script[src*="googletagmanager.com/gtag/js"]');
+		if (!script) {
 			resolve();
 			return;
 		}
-		const script = document.createElement('script');
-		script.async = true;
-		script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
-		script.onload = () => {
-			scriptLoaded = true;
+		if (script.getAttribute('data-adriaintel-gtag-ready') === 'true') {
+			resolve();
+			return;
+		}
+		const markReady = () => {
+			script.setAttribute('data-adriaintel-gtag-ready', 'true');
 			resolve();
 		};
-		script.onerror = () => reject(new Error('Failed to load Google Analytics'));
-		document.head.appendChild(script);
+		script.addEventListener('load', markReady, { once: true });
+		if ((script as HTMLScriptElement).complete) {
+			markReady();
+			return;
+		}
+		setTimeout(markReady, 2000);
 	});
 }
 
 export function sendPageView() {
-	if (!trackingEnabled || !measurementId) return;
+	if (!trackingEnabled || !measurementId || !configured) return;
 	const gtag = ensureGtag();
-	if (!gtag) return;
 	gtag('event', 'page_view', {
+		page_location: window.location.href,
 		page_path: window.location.pathname + window.location.search,
 		page_title: document.title,
 	});
@@ -68,23 +78,26 @@ export async function enableGoogleAnalytics() {
 		return;
 	}
 	trackingEnabled = true;
-	try {
-		await loadGtagScript();
-		const gtag = ensureGtag();
-		if (!gtag) return;
-		gtag('js', new Date());
+	const gtag = ensureGtag();
+	await waitForGtagScript();
+
+	gtag('consent', 'update', analyticsGranted);
+
+	if (!configured) {
 		gtag('config', measurementId, {
 			anonymize_ip: true,
 			send_page_view: false,
 		});
-		sendPageView();
-	} catch {
-		trackingEnabled = false;
+		configured = true;
 	}
+	sendPageView();
 }
 
 export function disableGoogleAnalytics() {
+	if (!measurementId) return;
 	trackingEnabled = false;
+	const gtag = ensureGtag();
+	gtag('consent', 'update', consentDenied);
 }
 
 export function isGoogleAnalyticsEnabled() {
