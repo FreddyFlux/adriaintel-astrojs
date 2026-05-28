@@ -1,0 +1,50 @@
+/* AdriaIntel — vanilla-cookieconsent theme (Adriatic Teal) */
+:root {
+	--cc-font-family: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+	--cc-modal-border-radius: 0.5rem;
+	--cc-btn-border-radius: 0.375rem;
+
+	--cc-primary-color: #084235;
+	--cc-secondary-color: #346858;
+	--cc-btn-primary-bg: #084235;
+	--cc-btn-primary-color: #ffffff;
+	--cc-btn-primary-hover-bg: #265a4b;
+	--cc-btn-secondary-bg: #e6fff4;
+	--cc-btn-secondary-color: #002018;
+	--cc-btn-secondary-hover-bg: #bdf4e0;
+
+	--cc-bg: #ffffff;
+	--cc-primary-bg: #e6fff4;
+	--cc-secondary-bg: #caffeb;
+	--cc-separator-border-color: #c0c9c3;
+
+	--cc-text: #002018;
+	--cc-secondary-text: #404945;
+
+	--cc-toggle-on-bg: #084235;
+	--cc-toggle-off-bg: #c0c9c3;
+	--cc-toggle-readonly-bg: #9cd2be;
+}
+
+#cc-main .cm,
+#cc-main .pm {
+	border: 1px solid #c0c9c3;
+	box-shadow: 0 12px 40px rgb(8 66 53 / 12%);
+}
+
+#cc-main .cm__title,
+#cc-main .pm__title {
+	font-family: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+	font-weight: 800;
+	letter-spacing: 0.02em;
+}
+
+#cc-main a {
+	color: #346858;
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+
+#cc-main a:hover {
+	color: #084235;
+}

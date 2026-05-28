@@ -1,0 +1,114 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const lastUpdated = '28 May 2026';
+---
+
+<Layout
+	title="Privacy Policy | AdriaIntel"
+	description="How AdriaIntel handles personal data, cookies, and analytics on this website."
+	pathname="/privacy"
+>
+	<main class="mx-auto max-w-3xl px-8 py-16 md:py-24">
+		<h1 class="font-headline text-3xl font-black tracking-tight text-primary md:text-4xl">
+			Privacy Policy
+		</h1>
+		<p class="mt-4 font-body text-sm text-on-surface-variant">Last updated: {lastUpdated}</p>
+
+		<div class="prose-adria mt-12 space-y-10 font-body text-on-surface">
+			<section>
+				<h2 class="font-headline text-xl font-bold text-primary">Who we are</h2>
+				<p class="mt-3 leading-relaxed text-on-surface-variant">
+					AdriaIntel (“we”, “us”) operates this website at adriaintel.com to share maritime
+					intelligence and related content. For privacy questions, use our
+					<a class="text-primary underline underline-offset-2 hover:text-primary-container" href="/contact"
+						>contact page</a
+					>.
+				</p>
+			</section>
+
+			<section>
+				<h2 class="font-headline text-xl font-bold text-primary">What we collect</h2>
+				<p class="mt-3 leading-relaxed text-on-surface-variant">
+					We do not operate a customer database or sell personal data.
+				</p>
+				<p class="mt-3 leading-relaxed text-on-surface-variant">
+					<strong class="text-on-surface">Contact form</strong> — When you submit our
+					<a class="text-primary underline underline-offset-2 hover:text-primary-container" href="/contact"
+						>contact form</a
+					>, we receive the details you provide (such as your name, email address, and message). We
+					do not store those submissions in a database on our own servers. They are sent through a
+					third-party API or email (SMTP) service so we can read and reply to your enquiry. That
+					provider processes the data on our behalf only to deliver the message to us.
+				</p>
+				<p class="mt-3 leading-relaxed text-on-surface-variant">
+					If you email us directly outside the form, we use your message only to respond.
+				</p>
+			</section>
+
+			<section id="cookies">
+				<h2 class="font-headline text-xl font-bold text-primary">Cookies and analytics</h2>
+				<p class="mt-3 leading-relaxed text-on-surface-variant">
+					<strong class="text-on-surface">Strictly necessary cookies</strong> remember your cookie
+					choices (for example, whether you accepted analytics). These are required for the consent
+					banner to work.
+				</p>
+				<p class="mt-3 leading-relaxed text-on-surface-variant">
+					<strong class="text-on-surface">Analytics cookies (optional)</strong> — only if you opt in
+					— we use Google Analytics 4 to understand aggregated website usage (such as pages viewed,
+					general region, browser, and device type). Google may set cookies such as <code
+						class="rounded bg-surface-container px-1 text-sm">_ga</code
+					> and process data as a processor under their terms. You can withdraw consent anytime via
+					<button
+						type="button"
+						data-open-cookie-settings
+						class="cursor-pointer text-primary underline underline-offset-2 hover:text-primary-container"
+						>Cookie settings</button
+					> in the footer.
+				</p>
+				<p class="mt-3 leading-relaxed text-on-surface-variant">
+					We do not load Google Analytics until you accept the Analytics category. We do not use
+					advertising or marketing cookies on this site.
+				</p>
+			</section>
+
+			<section>
+				<h2 class="font-headline text-xl font-bold text-primary">Google Search Console</h2>
+				<p class="mt-3 leading-relaxed text-on-surface-variant">
+					We use Google Search Console to monitor how our site appears in search results. This
+					service does not place analytics cookies on your browser when you visit our pages; data is
+					provided to us in Google’s tools.
+				</p>
+			</section>
+
+			<section>
+				<h2 class="font-headline text-xl font-bold text-primary">Legal basis (EEA visitors)</h2>
+				<p class="mt-3 leading-relaxed text-on-surface-variant">
+					For contact enquiries we rely on our legitimate interest in responding to your message, or
+					on steps taken at your request before entering a contract, depending on the nature of your
+					enquiry. For analytics cookies we rely on your consent. Necessary cookies are used based on
+					our legitimate interest in operating the site and recording your preferences.
+				</p>
+			</section>
+
+			<section>
+				<h2 class="font-headline text-xl font-bold text-primary">Your rights</h2>
+				<p class="mt-3 leading-relaxed text-on-surface-variant">
+					Depending on where you live, you may have rights to access, correct, delete, or restrict
+					processing of personal data, and to object or withdraw consent. Contact us via the
+					<a class="text-primary underline underline-offset-2 hover:text-primary-container" href="/contact"
+						>contact page</a
+					>. You may also lodge a complaint with your local data protection authority.
+				</p>
+			</section>
+
+			<section>
+				<h2 class="font-headline text-xl font-bold text-primary">Changes</h2>
+				<p class="mt-3 leading-relaxed text-on-surface-variant">
+					We may update this policy from time to time. The “Last updated” date at the top will
+					change when we do.
+				</p>
+			</section>
+		</div>
+	</main>
+</Layout>
