@@ -47,6 +47,7 @@ export type ArticleListItem = {
 	title: string;
 	slug: string;
 	publishedAt: string;
+	updatedAt?: string | null;
 	excerpt: string;
 	heroImage: SanityImageSource | null;
 	heroImageAlt: string;
@@ -61,6 +62,7 @@ const articleListProjection = `{
   title,
   "slug": slug.current,
   publishedAt,
+  updatedAt,
   excerpt,
   heroImage,
   heroImageAlt,

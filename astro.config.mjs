@@ -3,7 +3,6 @@ import { config as loadEnv } from 'dotenv';
 import { defineConfig } from 'astro/config';
 
 import react from '@astrojs/react';
-import sitemap from '@astrojs/sitemap';
 import vercel from '@astrojs/vercel';
 import sanity from '@sanity/astro';
 import tailwindcss from '@tailwindcss/vite';
@@ -18,6 +17,7 @@ const site = 'https://www.adriaintel.com';
 // https://astro.build/config
 export default defineConfig({
 	site,
+	trailingSlash: 'always',
 	output: 'static',
 	adapter: vercel({
 		imageService: true,
@@ -30,9 +30,6 @@ export default defineConfig({
 			useCdn: true,
 			studioBasePath: '/studio',
 			studioRouterHistory: 'hash',
-		}),
-		sitemap({
-			filter: (page) => !page.includes('/studio'),
 		}),
 	],
 
