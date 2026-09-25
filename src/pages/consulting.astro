@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import Icon from '@/components/icons/Icon.astro';
 import Layout from '../layouts/Layout.astro';
 import adriaintelGraphs from '../assets/adriaintel-graphs.png';
 
@@ -137,9 +138,10 @@ const jsonLd = {
 									class="group mt-auto inline-flex w-fit items-center gap-2 border-b border-outline-variant pb-1 font-label text-xs uppercase tracking-[0.2em] text-primary transition-colors hover:border-primary hover:text-tertiary"
 								>
 									{service.cta}
-									<span class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-1">
-										arrow_forward
-									</span>
+									<Icon
+										name="arrow_forward"
+										class="text-sm transition-transform group-hover:translate-x-1"
+									/>
 								</a>
 							</article>
 						))
@@ -217,10 +219,10 @@ const jsonLd = {
 							class="group mt-10 inline-flex items-center gap-2 border-b border-outline-variant pb-1 font-label text-xs uppercase tracking-[0.2em] text-primary transition-colors hover:border-primary hover:text-tertiary"
 						>
 							Explore Opportunity Assessment
-							<span
-								class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-1"
-								>arrow_forward</span
-							>
+							<Icon
+								name="arrow_forward"
+								class="text-sm transition-transform group-hover:translate-x-1"
+							/>
 						</a>
 					</div>
 					<div class="motion-reveal-scale motion-delay-1 md:col-span-6">

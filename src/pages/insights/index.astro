@@ -1,4 +1,5 @@
 ---
+import Icon from '@/components/icons/Icon.astro';
 import Layout from '../../layouts/Layout.astro';
 import { ArticleFilterBar } from '@/components/site/ArticleFilterBar';
 import { getAllArticles, urlFor } from '@/lib/sanity';
@@ -81,7 +82,7 @@ function fmt(d: string) {
 							<div class="flex items-center justify-between">
 								<div class="flex items-center gap-3">
 									<div class="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-surface-variant">
-										<span class="material-symbols-outlined text-primary">person</span>
+										<Icon name="person" class="text-primary" />
 									</div>
 									<div>
 										<p class="text-sm font-bold text-on-surface">
@@ -95,9 +96,10 @@ function fmt(d: string) {
 									href={`/insights/${featured.slug}`}
 								>
 									Read Full Report
-									<span class="material-symbols-outlined text-lg transition-transform group-hover:translate-x-1">
-										arrow_forward
-									</span>
+									<Icon
+										name="arrow_forward"
+										class="text-lg transition-transform group-hover:translate-x-1"
+									/>
 								</a>
 							</div>
 						</div>

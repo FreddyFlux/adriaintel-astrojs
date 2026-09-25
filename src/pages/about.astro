@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import Icon from '@/components/icons/Icon.astro';
 import Layout from '../layouts/Layout.astro';
 import adriaintelCoastCity from '../assets/adriaintel-coast-city.png';
 import adriaintelGraphs from '../assets/adriaintel-graphs.png';
@@ -43,7 +44,7 @@ import adriaintelGraphs from '../assets/adriaintel-graphs.png';
 				<div
 					class="absolute -bottom-8 -left-8 hidden max-w-[240px] rounded-xl bg-surface-container-highest p-8 editorial-shadow md:block"
 				>
-					<span class="material-symbols-outlined mb-4 text-4xl text-tertiary">analytics</span>
+					<Icon name="analytics" class="mb-4 text-4xl text-tertiary" />
 					<p class="font-headline text-xl font-bold text-primary">15+ Years</p>
 					<p class="text-sm text-secondary">
 						Of technical maritime data curation across Mediterranean basins.
@@ -89,9 +90,10 @@ import adriaintelGraphs from '../assets/adriaintel-graphs.png';
 				>
 					<div class="flex h-full flex-col justify-between">
 						<div>
-							<span class="material-symbols-outlined mb-6 text-4xl text-tertiary group-hover:text-surface"
-								>dataset</span
-							>
+							<Icon
+								name="dataset"
+								class="mb-6 text-4xl text-tertiary group-hover:text-surface"
+							/>
 							<h3
 								class="font-headline mb-4 text-3xl font-bold text-primary group-hover:text-surface"
 							>
@@ -115,19 +117,19 @@ import adriaintelGraphs from '../assets/adriaintel-graphs.png';
 					</div>
 				</div>
 				<div class="motion-reveal-scale motion-delay-1 relative overflow-hidden rounded-xl bg-surface-container-highest p-10 editorial-shadow">
-					<span class="material-symbols-outlined mb-6 text-4xl text-primary">monitoring</span>
+					<Icon name="monitoring" class="mb-6 text-4xl text-primary" />
 					<h3 class="font-headline mb-4 text-2xl font-bold text-primary">Market Volatility Analysis</h3>
 					<p class="mb-8 text-secondary">
 						Real-time tracking of global data predict fluctuations and reveal global trade impacts.
 					</p>
 					<div class="absolute bottom-0 right-0 h-32 w-32 opacity-10">
-						<span class="material-symbols-outlined text-[8rem]">show_chart</span>
+						<Icon name="show_chart" class="text-[8rem]" />
 					</div>
 				</div>
 				<div
 					class="motion-reveal-scale motion-delay-1 rounded-xl border border-outline-variant/15 bg-tertiary-container/20 p-10 editorial-shadow"
 				>
-					<span class="material-symbols-outlined mb-6 text-4xl text-tertiary">security</span>
+					<Icon name="security" class="mb-6 text-4xl text-tertiary" />
 					<h3 class="font-headline mb-4 text-2xl font-bold text-primary">Traceability Assurance</h3>
 					<p class="text-secondary">
 						Our 'Sea-to-Shelf' digital ledger ensures every data point in your supply chain is verified
@@ -160,9 +162,10 @@ import adriaintelGraphs from '../assets/adriaintel-graphs.png';
 							href="/contact"
 						>
 							Learn more
-							<span class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-1"
-								>arrow_forward</span
-							>
+							<Icon
+								name="arrow_forward"
+								class="text-sm transition-transform group-hover:translate-x-1"
+							/>
 						</a>
 					</div>
 				</div>

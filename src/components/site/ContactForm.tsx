@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Icon } from "@/components/icons/Icon";
 
 type Variant = "dark" | "light";
 
@@ -139,7 +140,7 @@ export function ContactForm({
 					className="group flex items-center gap-3 rounded-xl bg-primary px-10 py-4 font-headline font-bold text-on-primary transition-all hover:gap-5"
 				>
 					{status === "sent" ? "Sent" : "Send Inquiry"}
-					<span className="material-symbols-outlined text-lg">arrow_forward</span>
+					<Icon name="arrow_forward" className="text-lg" />
 				</button>
 				{status === "sent" ? (
 					<p className="motion-reveal mt-3 text-sm text-secondary" role="status">

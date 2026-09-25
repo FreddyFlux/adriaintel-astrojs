@@ -1,5 +1,6 @@
 import * as React from "react";
 import adriaintelLogo from "@/assets/adriaintel-logo.svg";
+import { Icon } from "@/components/icons/Icon";
 
 const links = [
 	{ href: "/consulting", label: "Consulting" },
@@ -67,9 +68,7 @@ export function SiteHeader({ currentPath }: { currentPath: string }) {
 					aria-label={open ? "Close menu" : "Open menu"}
 					onClick={() => setOpen((v) => !v)}
 				>
-					<span className="material-symbols-outlined text-3xl">
-						{open ? "close" : "menu"}
-					</span>
+					<Icon name={open ? "close" : "menu"} className="text-3xl" />
 				</button>
 			</div>
 			{open ? (

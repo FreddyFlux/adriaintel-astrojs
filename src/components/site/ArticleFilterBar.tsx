@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Icon } from "@/components/icons/Icon";
 
 const ALL_LABEL = "All Insights";
 
@@ -82,7 +83,7 @@ export function ArticleFilterBar({ categories }: ArticleFilterBarProps) {
 				);
 			})}
 			<div className="ml-auto hidden items-center gap-2 text-sm text-secondary lg:flex">
-				<span className="material-symbols-outlined text-sm">sort</span>
+				<Icon name="sort" className="text-sm" />
 				<span>Sort by: Latest</span>
 			</div>
 		</div>

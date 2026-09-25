@@ -1,4 +1,6 @@
 ---
+import Icon from '@/components/icons/Icon.astro';
+
 const year = new Date().getFullYear();
 ---
 
@@ -52,10 +54,10 @@ const year = new Date().getFullYear();
 			<h4 class="font-headline text-xs font-bold uppercase tracking-widest text-white">Connect</h4>
 			<div class="flex gap-4">
 				<a class="text-[#e6fff4]/80 transition-all hover:text-white" href="#" aria-label="Email"
-					><span class="material-symbols-outlined">alternate_email</span></a
+					><Icon name="alternate_email" /></a
 				>
 				<a class="text-[#e6fff4]/80 transition-all hover:text-white" href="#" aria-label="Web"
-					><span class="material-symbols-outlined">public</span></a
+					><Icon name="public" /></a
 				>
 			</div>
 		</div>
