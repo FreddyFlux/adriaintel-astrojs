@@ -31,7 +31,8 @@ const {
 } = Astro.props;
 
 const site = Astro.site?.href?.replace(/\/$/, '') ?? '';
-const canonicalUrl = site ? `${site}${pathname === '/' ? '' : pathname}` : Astro.url.href;
+const canonicalPath = pathname === '/' ? '' : pathname.replace(/\/+$/, '');
+const canonicalUrl = site ? `${site}${canonicalPath}` : Astro.url.href;
 const ogAbsolute =
 	ogImage == null
 		? undefined

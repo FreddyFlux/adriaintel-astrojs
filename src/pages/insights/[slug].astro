@@ -59,7 +59,7 @@ const jsonLd = {
 	},
 	mainEntityOfPage: {
 		'@type': 'WebPage',
-		'@id': siteUrl ? `${siteUrl}/articles/${article.slug}` : Astro.url.href,
+		'@id': siteUrl ? `${siteUrl}/insights/${article.slug}` : Astro.url.href,
 	},
 	...(ogAbsolute && { image: ogAbsolute }),
 };
@@ -68,7 +68,7 @@ const jsonLd = {
 <Layout
 	title={`${pageTitle} | AdriaIntel`}
 	description={pageDescription}
-	pathname={`/articles/${article.slug}`}
+	pathname={`/insights/${article.slug}`}
 	ogType="article"
 	ogImage={ogAbsolute}
 	jsonLd={jsonLd}
@@ -109,7 +109,7 @@ const jsonLd = {
 			{article.body ? <PortableTextRenderer value={article.body} /> : null}
 		</article>
 		<p class="mt-16">
-			<a class="font-headline font-bold text-primary" href="/articles">← Back to articles</a>
+			<a class="font-headline font-bold text-primary" href="/insights">← Back to insights</a>
 		</p>
 	</main>
 </Layout>

@@ -2,9 +2,9 @@ import * as React from "react";
 import adriaintelLogo from "@/assets/adriaintel-logo.svg";
 
 const links = [
-	{ href: "/", label: "Home" },
+	{ href: "/consulting", label: "Consulting" },
+	{ href: "/insights", label: "Insights" },
 	{ href: "/about", label: "About" },
-	{ href: "/articles", label: "Articles" },
 	{ href: "/contact", label: "Contact" },
 ] as const;
 
@@ -44,10 +44,7 @@ export function SiteHeader({ currentPath }: { currentPath: string }) {
 				</a>
 				<div className="hidden items-center gap-10 md:flex">
 					{links.map(({ href, label }) => {
-						const active =
-							href === "/"
-								? pathname === "/"
-								: pathname.startsWith(href);
+						const active = pathname.startsWith(href);
 						return (
 							<a
 								key={href}
@@ -63,25 +60,17 @@ export function SiteHeader({ currentPath }: { currentPath: string }) {
 						);
 					})}
 				</div>
-				<div className="flex items-center gap-3">
-					<a
-						href="/contact"
-						className="hidden rounded-xl bg-primary px-6 py-2.5 font-headline text-sm font-bold uppercase tracking-wider text-on-primary transition-transform hover:scale-105 md:inline-flex"
-					>
-						Consultation
-					</a>
-					<button
-						type="button"
-						className="text-primary md:hidden"
-						aria-expanded={open}
-						aria-label={open ? "Close menu" : "Open menu"}
-						onClick={() => setOpen((v) => !v)}
-					>
-						<span className="material-symbols-outlined text-3xl">
-							{open ? "close" : "menu"}
-						</span>
-					</button>
-				</div>
+				<button
+					type="button"
+					className="text-primary md:hidden"
+					aria-expanded={open}
+					aria-label={open ? "Close menu" : "Open menu"}
+					onClick={() => setOpen((v) => !v)}
+				>
+					<span className="material-symbols-outlined text-3xl">
+						{open ? "close" : "menu"}
+					</span>
+				</button>
 			</div>
 			{open ? (
 				<div className="mobile-nav-panel absolute left-0 right-0 top-full border-b border-outline-variant/20 bg-[#e6fff4]/95 px-6 py-6 shadow-lg backdrop-blur-xl md:hidden">
@@ -96,13 +85,6 @@ export function SiteHeader({ currentPath }: { currentPath: string }) {
 								{label}
 							</a>
 						))}
-						<a
-							href="/contact"
-							className="mt-2 rounded-xl bg-primary px-6 py-3 text-center font-headline text-sm font-bold text-on-primary"
-							onClick={() => setOpen(false)}
-						>
-							Consultation
-						</a>
 					</div>
 				</div>
 			) : null}

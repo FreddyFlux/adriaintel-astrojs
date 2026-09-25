@@ -129,7 +129,7 @@ export function ContactForm({
 				<textarea
 					name="message"
 					className={`${field} resize-none`}
-					placeholder="Share your maritime vision or inquiry..."
+					placeholder="Let's talk seafood..."
 					rows={4}
 				/>
 			</div>

@@ -28,8 +28,8 @@ function formatLastmod(date: Date): string {
 
 function toAbsolute(origin: string, pathname: string): string {
 	const base = origin.replace(/\/$/, '');
-	const path = pathname.startsWith('/') ? pathname : `/${pathname}`;
-	return path === '/' ? `${base}/` : `${base}${path.endsWith('/') ? path : `${path}/`}`;
+	const path = (pathname.startsWith('/') ? pathname : `/${pathname}`).replace(/\/+$/, '') || '/';
+	return path === '/' ? `${base}/` : `${base}${path}`;
 }
 
 const STATIC_PAGES: {
@@ -38,18 +38,20 @@ const STATIC_PAGES: {
 	priority: number;
 }[] = [
 	{ path: '/', changefreq: 'weekly', priority: 1 },
-	{ path: '/articles/', changefreq: 'daily', priority: 0.9 },
-	{ path: '/about/', changefreq: 'monthly', priority: 0.7 },
-	{ path: '/contact/', changefreq: 'monthly', priority: 0.7 },
-	{ path: '/privacy/', changefreq: 'yearly', priority: 0.3 },
-	{ path: '/terms/', changefreq: 'yearly', priority: 0.3 },
+	{ path: '/consulting', changefreq: 'monthly', priority: 0.8 },
+	{ path: '/insights', changefreq: 'daily', priority: 0.9 },
+	{ path: '/seafood-table', changefreq: 'monthly', priority: 0.7 },
+	{ path: '/about', changefreq: 'monthly', priority: 0.7 },
+	{ path: '/contact', changefreq: 'monthly', priority: 0.7 },
+	{ path: '/privacy', changefreq: 'yearly', priority: 0.3 },
+	{ path: '/terms', changefreq: 'yearly', priority: 0.3 },
 ];
 
 function articleEntries(articles: ArticleListItem[], origin: string): SitemapEntry[] {
 	return articles.map((article) => {
 		const raw = article.updatedAt ?? article.publishedAt;
 		const lastmod = raw ? new Date(raw) : undefined;
-		const loc = toAbsolute(origin, `/articles/${article.slug}/`);
+		const loc = toAbsolute(origin, `/insights/${article.slug}`);
 
 		let images: SitemapEntry['images'];
 		if (article.heroImage) {

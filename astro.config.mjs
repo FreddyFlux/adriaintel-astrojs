@@ -17,8 +17,12 @@ const site = 'https://www.adriaintel.com';
 // https://astro.build/config
 export default defineConfig({
 	site,
-	trailingSlash: 'always',
+	trailingSlash: 'never',
 	output: 'static',
+	redirects: {
+		'/articles': '/insights',
+		'/articles/[slug]': '/insights/[slug]',
+	},
 	adapter: vercel({
 		imageService: true,
 	}),

@@ -17,25 +17,30 @@ function fmt(d: string) {
 ---
 
 <Layout
-	title="Articles | AdriaIntel Maritime Intelligence"
-	description="Advanced data analysis and editorial perspectives on Adriatic seafood markets, maritime logistics, and blue economy trends."
-	pathname="/articles"
+	title="Insights | AdriaIntel Maritime Intelligence"
+	description="Seafood markets don't operate in isolation. We connect developments in feed, trade, demand, production and supply to understand what they mean commercially."
+	pathname="/insights"
 >
 	<main class="pb-24 pt-32">
 		<header class="motion-reveal mx-auto mb-20 max-w-7xl px-8">
-			<div class="max-w-3xl">
+			<div class="max-w-5xl">
 				<span class="font-label mb-4 block text-xs font-bold uppercase tracking-widest text-tertiary"
 					>Intelligence Hub</span
 				>
 				<h1
-					class="font-headline mb-6 text-5xl font-extrabold leading-[0.95] tracking-tighter text-on-background md:text-7xl"
+					class="font-headline mb-8 text-4xl font-extrabold leading-[1.08] tracking-tighter text-on-background md:text-6xl lg:text-7xl"
 				>
-					Maritime <span class="italic text-primary">Insights</span>
+					Across species.<br />
+					Across markets.<br />
+					Across the <span class="italic text-primary">value chain.</span>
 				</h1>
-				<p class="max-w-2xl text-balance text-lg font-light leading-relaxed text-secondary md:text-xl">
-					Advanced data analysis and editorial perspectives on the Adriatic seafood markets, maritime
-					logistics, and emerging blue economy trends.
-				</p>
+				<div class="max-w-2xl space-y-4 text-lg font-light leading-relaxed text-secondary md:text-xl">
+					<p>
+						Seafood markets don't operate in isolation. Changes in feed costs, trade policy, consumer
+						demand, production economics and supply can reshape entire species and markets.
+					</p>
+					<p>We connect those developments to understand what they mean commercially.</p>
+				</div>
 			</div>
 		</header>
 
@@ -87,7 +92,7 @@ function fmt(d: string) {
 								</div>
 								<a
 									class="group flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-primary"
-									href={`/articles/${featured.slug}`}
+									href={`/insights/${featured.slug}`}
 								>
 									Read Full Report
 									<span class="material-symbols-outlined text-lg transition-transform group-hover:translate-x-1">
@@ -143,7 +148,7 @@ function fmt(d: string) {
 								<p class="mb-6 line-clamp-3 text-sm leading-relaxed text-secondary">{post.excerpt}</p>
 								<a
 									class="inline-block border-b-2 border-transparent pb-1 text-[11px] font-bold uppercase tracking-[0.2em] text-tertiary transition-all hover:border-tertiary"
-									href={`/articles/${post.slug}`}
+									href={`/insights/${post.slug}`}
 								>
 									Explore Insight
 								</a>

@@ -1,0 +1,280 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import adriaintelGraphs from '../assets/adriaintel-graphs.png';
+
+const siteUrl = Astro.site?.href?.replace(/\/$/, '') ?? '';
+
+const services = [
+	{
+		number: '01',
+		heading: 'Understand the market.',
+		service: 'Market intelligence.',
+		description:
+			'Supply and demand, production, trade flows, pricing, competitors, consumption and outlook.',
+		cta: 'Explore Market Intelligence',
+	},
+	{
+		number: '02',
+		heading: 'Assess the opportunity.',
+		service: 'Opportunity assessment.',
+		description:
+			'Species, markets, countries, market entry, competitive landscapes, commercial attractiveness and risk.',
+		cta: 'Explore Opportunity Assessment',
+	},
+	{
+		number: '03',
+		heading: 'Have an expert on your side.',
+		service: 'Strategic advisory.',
+		description:
+			'Navigate important decisions. Ongoing market monitoring, expansion, business development intelligence, investment support and independent second opinions.',
+		cta: 'Explore Strategic Advisory',
+	},
+];
+
+const audiences = [
+	{
+		title: 'Investors & Investment Teams',
+		description:
+			'Market assessment, opportunity screening and independent commercial perspective.',
+	},
+	{
+		title: 'Seafood Companies & Producers',
+		description: 'Markets, competitors, customers, expansion and strategic questions.',
+	},
+	{
+		title: 'Aquaculture Businesses',
+		description: 'Species, markets, production economics, positioning and market entry.',
+	},
+	{
+		title: 'Industry Organisations & Institutions',
+		description: 'Independent intelligence, sector analysis and strategic insight.',
+	},
+];
+
+const questions = [
+	'Where is supply coming from?',
+	'What is driving demand?',
+	'How competitive is the production landscape?',
+	'What are the relevant trade flows?',
+	'Are current prices sustainable?',
+	'What could change the investment case?',
+];
+
+const jsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'ItemList',
+	name: 'AdriaIntel Consulting Services',
+	itemListElement: services.map((service, index) => ({
+		'@type': 'ListItem',
+		position: index + 1,
+		item: {
+			'@type': 'Service',
+			name: service.service.replace(/\.$/, ''),
+			description: service.description,
+			serviceType: 'Seafood market consulting',
+			areaServed: 'Global',
+			provider: {
+				'@type': 'Organization',
+				name: 'AdriaIntel',
+				url: siteUrl || undefined,
+			},
+		},
+	})),
+};
+---
+
+<Layout
+	title="Consulting | AdriaIntel"
+	description="Market intelligence, opportunity assessment and strategic advisory for seafood, fisheries and aquaculture."
+	pathname="/consulting"
+	jsonLd={jsonLd}
+>
+	<main class="pt-32">
+		<!-- Hero -->
+		<section class="relative overflow-hidden">
+			<div class="relative z-10 mx-auto max-w-7xl px-8 pb-24 pt-8 md:pb-32">
+				<span class="font-label motion-reveal mb-6 block text-xs uppercase tracking-[0.2em] text-tertiary"
+					>Consulting</span
+				>
+				<h1
+					class="font-headline motion-reveal motion-delay-1 max-w-4xl text-5xl font-extrabold leading-[1.05] tracking-tight text-primary md:text-7xl"
+				>
+					Three ways to understand the market<span class="block font-light italic text-secondary"
+						>&mdash;and act on it.</span
+					>
+				</h1>
+			</div>
+		</section>
+
+		<!-- 01 / 02 / 03 — three core services -->
+		<section class="bg-surface-container-low py-24 md:py-32">
+			<div class="mx-auto max-w-7xl px-8">
+				<div class="grid grid-cols-1 gap-16 md:grid-cols-3 md:gap-12">
+					{
+						services.map((service, index) => (
+							<article
+								class="motion-reveal flex flex-col border-t border-primary/15 pt-8"
+								style={`animation-delay: ${index * 90}ms`}
+							>
+								<span
+									class="font-headline mb-6 block text-7xl font-extrabold leading-none tracking-tighter text-primary/15 md:text-8xl"
+									aria-hidden="true"
+								>
+									{service.number}
+								</span>
+								<h2 class="font-headline mb-3 text-3xl font-bold leading-tight tracking-tight text-primary md:min-h-[4.5rem]">
+									{service.heading}
+								</h2>
+								<p class="font-headline mb-6 text-xl font-light italic text-secondary">
+									{service.service}
+								</p>
+								<p class="font-body mb-10 text-base leading-relaxed text-on-surface-variant">
+									{service.description}
+								</p>
+								<a
+									href="/contact"
+									class="group mt-auto inline-flex w-fit items-center gap-2 border-b border-outline-variant pb-1 font-label text-xs uppercase tracking-[0.2em] text-primary transition-colors hover:border-primary hover:text-tertiary"
+								>
+									{service.cta}
+									<span class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-1">
+										arrow_forward
+									</span>
+								</a>
+							</article>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<!-- Who it is for -->
+		<section class="bg-surface py-24 md:py-32">
+			<div class="mx-auto max-w-7xl px-8">
+				<div class="motion-reveal mb-16 max-w-3xl">
+					<span class="font-label mb-4 block text-xs uppercase tracking-[0.2em] text-tertiary"
+						>Who it is for</span
+					>
+					<h2
+						class="font-headline mb-8 text-4xl font-bold leading-tight tracking-tight text-primary md:text-5xl"
+					>
+						Seafood questions don&rsquo;t come in one shape.
+					</h2>
+					<p class="font-body text-lg leading-relaxed text-on-surface-variant">
+						AdriaIntel works with businesses, investors and organisations facing commercial questions
+						across seafood, fisheries and aquaculture.
+					</p>
+				</div>
+				<div class="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-4 md:gap-8">
+					{
+						audiences.map((audience, index) => (
+							<div
+								class="motion-reveal border-t border-primary/15 pt-6"
+								style={`animation-delay: ${index * 70}ms`}
+							>
+								<h3 class="font-headline mb-3 text-base font-bold uppercase leading-snug tracking-tight text-primary">
+									{audience.title}
+								</h3>
+								<p class="font-body text-sm leading-relaxed text-secondary">
+									{audience.description}
+								</p>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<!-- Considering a seafood opportunity? -->
+		<section class="bg-surface-container-low py-24 md:py-32">
+			<div class="mx-auto max-w-7xl px-8">
+				<div class="mb-20 grid grid-cols-1 items-center gap-16 md:grid-cols-12">
+					<div class="motion-reveal md:col-span-6">
+						<span class="font-label mb-4 block text-xs uppercase tracking-[0.2em] text-tertiary"
+							>Considering a seafood opportunity?</span
+						>
+						<h2
+							class="font-headline mb-8 text-balance text-3xl font-bold leading-[1.15] tracking-tight text-primary md:text-4xl lg:text-[2.75rem]"
+						>
+							The question isn&rsquo;t just whether a market is growing.<span
+								class="block font-light italic text-secondary"
+								>It&rsquo;s whether the opportunity makes commercial sense.</span
+							>
+						</h2>
+						<div class="font-body space-y-4 text-lg leading-relaxed text-on-surface-variant">
+							<p>
+								Growth on its own does not make a market worth entering. Commercial sense depends on
+								where supply is actually coming from, what is driving demand, and whether the
+								economics hold once competition, trade flows and price are accounted for.
+							</p>
+							<p>
+								Opportunity assessment works through those questions in sequence, so the decision
+								rests on evidence rather than momentum.
+							</p>
+						</div>
+						<a
+							href="/contact"
+							class="group mt-10 inline-flex items-center gap-2 border-b border-outline-variant pb-1 font-label text-xs uppercase tracking-[0.2em] text-primary transition-colors hover:border-primary hover:text-tertiary"
+						>
+							Explore Opportunity Assessment
+							<span
+								class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-1"
+								>arrow_forward</span
+							>
+						</a>
+					</div>
+					<div class="motion-reveal-scale motion-delay-1 md:col-span-6">
+						<div class="overflow-hidden rounded-xl editorial-shadow">
+							<Image
+								class="aspect-[4/3] w-full object-cover"
+								src={adriaintelGraphs}
+								alt="Seafood market pricing and trade-flow data under analysis"
+								width={880}
+								height={660}
+								loading="lazy"
+								sizes="(min-width: 768px) 50vw, 100vw"
+								decoding="async"
+							/>
+						</div>
+					</div>
+				</div>
+				<ul class="grid grid-cols-1 gap-x-12 gap-y-8 sm:grid-cols-2 md:grid-cols-3">
+					{
+						questions.map((question, index) => (
+							<li
+								class="motion-reveal border-t border-primary/15 pt-5 font-headline text-lg font-medium leading-snug text-primary"
+								style={`animation-delay: ${index * 60}ms`}
+							>
+								{question}
+							</li>
+						))
+					}
+				</ul>
+			</div>
+		</section>
+
+		<!-- Closing CTA -->
+		<section class="mx-auto mb-20 max-w-7xl px-8 pt-24 md:pt-32">
+			<div
+				class="motion-reveal-scale relative overflow-hidden rounded-xl bg-primary p-12 text-center text-on-primary md:p-16"
+			>
+				<div class="relative z-10">
+					<h2 class="font-headline mb-8 text-4xl font-bold leading-tight md:text-5xl">
+						Have a question the market <br class="hidden md:block" />hasn&rsquo;t answered yet?
+					</h2>
+					<a
+						href="/contact"
+						class="inline-block rounded-xl bg-tertiary px-10 py-4 font-headline text-lg font-bold text-on-tertiary transition-transform hover:scale-105"
+					>
+						Start a conversation
+					</a>
+				</div>
+				<div
+					class="pointer-events-none absolute inset-0 opacity-10"
+					style="background-image: radial-gradient(circle at 2px 2px, #e6fff4 1px, transparent 0); background-size: 40px 40px;"
+				>
+				</div>
+			</div>
+		</section>
+	</main>
+</Layout>

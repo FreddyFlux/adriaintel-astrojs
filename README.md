@@ -12,21 +12,24 @@ From this directory:
 | `pnpm dev`     | Dev server (default `localhost:4321`) |
 | `pnpm build`   | Production build to `./dist/`        |
 | `pnpm preview` | Preview the production build locally |
+| `pnpm studio:dev` | Sanity Studio only (standalone dev server) |
+| `pnpm studio:deploy` | Deploy Studio to Sanity hosting (`*.sanity.studio`) |
 
 ## Environment
 
 1. Copy `.env.example` to `.env`.
 2. In [sanity.io/manage](https://www.sanity.io/manage), open your project and copy **Project ID** and your **dataset** name (often `production`).
-3. Set `SANITY_PROJECT_ID`, `SANITY_DATASET`, and the same values on `PUBLIC_SANITY_PROJECT_ID` and `PUBLIC_SANITY_DATASET` (needed for embedded Studio in the browser).
+3. Set `SANITY_PROJECT_ID`, `SANITY_DATASET`, and the same values on `PUBLIC_SANITY_*` (embedded Studio in Astro) and `SANITY_STUDIO_*` (hosted Studio deploy — Sanity only bundles variables with the `SANITY_STUDIO_` prefix).
 4. Optional: `SANITY_API_VERSION` (default `2024-01-01`), `SANITY_WEBHOOK_SECRET` if you verify webhooks locally.
 
 On **Vercel**, add the same variables under Project → Settings → Environment Variables for Production (and Preview if needed).
 
 ## Sanity Studio and content
 
-- **Local Studio:** `pnpm dev` → [http://localhost:4321/studio](http://localhost:4321/studio) (port may differ).
+- **Hosted Studio (share with editors):** from this directory, run `pnpm studio:deploy` (log in with `pnpm exec sanity login` if needed). Default URL: `https://<SANITY_STUDIO_HOST>.sanity.studio` (set `SANITY_STUDIO_HOST` in `.env`, default `adriaintel-cms`). Invite users under [sanity.io/manage](https://www.sanity.io/manage) → your project → **Members**.
+- **Local embedded Studio:** `pnpm dev` → [http://localhost:4321/studio](http://localhost:4321/studio) (port may differ).
 - Create **Author** documents first, then **Article** documents; **Publish** so the public API returns them.
-- Under **API → CORS origins**, add your dev URL and production origin so the Studio can call the API.
+- Under **API → CORS origins**, add your dev URL, production site origin, and `https://<SANITY_STUDIO_HOST>.sanity.studio` if the hosted Studio cannot reach the API.
 
 ## Rebuilds when content changes
 
